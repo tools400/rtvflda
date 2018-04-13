@@ -1,0 +1,254 @@
+     /* =================================================================== */
+     /*                                                                     */
+     /*  Documentation:                                                     */
+     /*                                                                     */
+     /*  Utility . . . : RTVFLDA                                            */
+     /*  Object  . . . : A_INSTALL  (PGM)                                   */
+     /*  Source member : A_INSTALL                                          */
+     /*  Source type . : CLLE                                               */
+     /*  Description   : RTVFLDA - Installer                                */
+     /*  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      */
+     /*                                                                     */
+     /* =================================================================== */
+     /*                                                                     */
+     /*  This software is free software, you can redistribute it and/or     */
+     /*  modify it under the terms of the GNU General Public License (GPL)  */
+     /*  as published by the Free Software Foundation.                      */
+     /*                                                                     */
+     /*  See GNU General Public License for details.                        */
+     /*          http://www.opensource.org                                  */
+     /*          http://www.opensource.org/licenses/gpl-license.html        */
+     /*                                                                     */
+     /* =================================================================== */
+     /*  History:                                                           */
+     /*                                                                     */
+     /*  Datum       Name          Änderung                                 */
+     /*  ----------  ------------  ---------------------------------------  */
+     /*                                                                     */
+     /* =================================================================== */
+     /*   >>PRE-COMPILER<<                                                  */
+     /*     >>CRTCMD<<    CRTBNDCL  PGM(QTEMP/&OB) +                        */
+     /*                             SRCFILE(&SL/&SF) SRCMBR(&SM);           */
+     /*     >>IMPORTANT<<                                                   */
+     /*       >>PARM<<    OPTION(*EVENTF);                                  */
+     /*     >>END-IMPORTANT<<                                               */
+     /*     >>EXECUTE<<                                                     */
+     /*     >>CMD<<       CALL   PGM(QTEMP/A_INSTALL) +                     */
+     /*                          PARM('*CURRENT' '&SF' '&LI' 'NO');         */
+     /*     >>CMD<<       DLTPGM PGM(QTEMP/A_INSTALL);                      */
+     /*   >>END-PRE-COMPILER<<                                              */
+     /* =================================================================== */
+             PGM        PARM(&TGTRLS &SRCFILE &TOLIB &CRTTSTPGM)
+
+             DCL        VAR(&TGTRLS   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SRCFILE  ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TOLIB    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CRTTSTPGM) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&SRCLIB   ) TYPE(*CHAR) LEN(10)
+
+             CHGVAR     VAR(&SRCLIB) VALUE(&TOLIB   )
+
+     /* -------------------------------- */
+     /*  Delete old objects              */
+     /* -------------------------------- */
+             DLTMOD     MODULE(&TOLIB/RTVFLDAR1)
+             MONMSG     MSGID(CPF2105)
+
+             DLTSRVPGM  SRVPGM(&TOLIB/RTVFLDA)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T1)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T1)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T2)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T2)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T3)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T3)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T4)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T4)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T5)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T5)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/RTVFLDA_T6)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/RTVFLDA_T6)
+             MONMSG     MSGID(CPF2105)
+
+     /* -------------------------------- */
+     /*  Create modules                  */
+     /* -------------------------------- */
+             CRTRPGMOD  MODULE(&TOLIB/RTVFLDAR1) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(*MODULE) +
+                          DBGVIEW(*LIST) TRUNCNBR(*NO) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(RTVFLDAR1 ) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+     /* -------------------------------- */
+     /*  Create service programs         */
+     /* -------------------------------- */
+             CRTSRVPGM  SRVPGM(&TOLIB/RTVFLDA) +
+                          MODULE(&TOLIB/RTVFLDAR1) +
+                          EXPORT(*SRCFILE) +
+                          SRCFILE(&SRCLIB/&SRCFILE) +
+                          SRCMBR(RTVFLDA) +
+                          ACTGRP(*CALLER) +
+                          BNDSRVPGM(&TOLIB/BASICS1) +
+                          DETAIL(*BASIC) +
+                          TEXT('Retrieve Field Attributes API') +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(RTVFLDA) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+     /* -------------------------------- */
+     /*  Create test programs            */
+     /* -------------------------------- */
+             IF         COND(&CRTTSTPGM *EQ 'YES') THEN(DO)
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T1) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T1) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T1) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T1) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T1)
+
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T2) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T2) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T2) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T2) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T2)
+
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T3) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T3) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T3) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T3) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T3)
+
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T4) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T4) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T4) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T4) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T4)
+
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T5) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T5) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T5) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T5) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T5)
+
+                CRTRPGMOD  MODULE(&TOLIB/RTVFLDA_T6) +
+                             SRCFILE(&SRCLIB/&SRCFILE) +
+                             SRCMBR(*MODULE) +
+                             DBGVIEW(*LIST) +
+                             TRUNCNBR(*NO) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T6) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                CRTPGM     PGM(&TOLIB/RTVFLDA_T6) +
+                             MODULE(*PGM) +
+                             BNDSRVPGM(&TOLIB/RTVFLDA &TOLIB/BASICS1) +
+                             ACTGRP(*NEW) +
+                             DETAIL(*BASIC) +
+                             TGTRLS(&TGTRLS)
+                DLTSPLF    FILE(RTVFLDA_T6) JOB(*) SPLNBR(*LAST)
+                MONMSG     MSGID(CPF0000)
+
+                DLTMOD    MODULE(&TOLIB/RTVFLDA_T6)
+
+             ENDDO
+
+     /* -------------------------------- */
+     /*  Delete obsolete objects         */
+     /* -------------------------------- */
+             DLTMOD     MODULE(&TOLIB/RTVFLDAR1)
+
+             ENDPGM

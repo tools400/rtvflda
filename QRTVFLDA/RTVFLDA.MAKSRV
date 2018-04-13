@@ -1,0 +1,53 @@
+     /* =================================================================== */
+     /*  Author  :  Thomas Raddatz                                          */
+     /*  Date    :  25.09.2002                                              */
+     /*  E-mail  :  thomas.raddatz@Tools400.de                              */
+     /*  Homepage:  www.tools400.de                                         */
+     /* =================================================================== */
+     /*                                                                     */
+     /*  This software is free software, you can redistribute it and/or     */
+     /*  modify it under the terms of the GNU General Public License (GPL)  */
+     /*  as published by the Free Software Foundation.                      */
+     /*                                                                     */
+     /*  See GNU General Public License for details.                        */
+     /*          http://www.opensource.org                                  */
+     /*          http://www.opensource.org/licenses/gpl-license.html        */
+     /*                                                                     */
+     /* =================================================================== */
+     /*   >>PRE-COMPILER<<                                                  */
+     /*                                                                     */
+     /*     >>CRTCMD<<  CRTSRVPGM    SRVPGM(&LI/&OB);                       */
+     /*                                                                     */
+     /*     >>LINK<<                                                        */
+     /*       >>PARM<<  MODULE(&LI/RTVFLDAR1);                              */
+     /*       >>PARM<<  EXPORT(*SRCFILE);                                   */
+     /*       >>PARM<<  SRCFILE(&SL/&SF);                                   */
+     /*       >>PARM<<  SRCMBR(&SM);                                        */
+     /*       >>PARM<<  ACTGRP(*CALLER);                                    */
+     /*       >>PARM<<  DETAIL(*BASIC);                                     */
+     /*       >>PARM<<  ALWUPD(*YES);                                       */
+     /*       >>PARM<<  ALWLIBUPD(*YES);                                    */
+     /*       >>PARM<<  BNDSRVPGM(BASICS1);                                 */
+     /*       >>PARM<<  TGTRLS(V6R1M0);                                     */
+     /*       >>PARM<<  TEXT('SrvPgm  : Retrieve Field Attributes');        */
+     /*     >>END-LINK<<                                                    */
+     /*                                                                     */
+     /*     >>EXECUTE<<                                                     */
+     /*                                                                     */
+     /*   >>END-PRE-COMPILER<<                                              */
+     /* =================================================================== */
+     STRPGMEXP PGMLVL(*CURRENT) SIGNATURE('Version 1.5')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_delete')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_getNumE')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_new')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_rtvFldAtr')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_isNull')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_null')
+     ENDPGMEXP
+
+     STRPGMEXP PGMLVL(*PRV    ) SIGNATURE(*GEN)
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_delete')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_getNumE')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_new')
+       EXPORT SYMBOL('RTVFLDA_f_FldDct_rtvFldAtr')
+     ENDPGMEXP
