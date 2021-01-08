@@ -1,225 +1,329 @@
-      /IF NOT DEFINED(QDBRTVFD)
-      /DEFINE QDBRTVFD
+      /if not defined(QDBRTVFD)
+      /define QDBRTVFD
       *
       *  Retrieve Database File Description (QDBRTVFD) API
-     D QDBRTVFD...
-     D                 PR                  extpgm('QDBRTVFD')
-     D  o_rcvVar                  65535A         options(*varsize)
-     D  i_lenRcvVar                  10I 0 const
-     D  o_retFileName                20A
-     D  i_format                      8A   const
-     D  i_qFile                      20A   const
-     D  i_rcdFormat                  10A   const
-     D  i_override                    1A   const
-     D  i_system                     10A   const
-     D  i_formatType                 10A   const
-     D  io_errCode                65535A          options(*varsize )
+     d QDBRTVFD...
+     d                 pr                  extpgm('QDBRTVFD')
+     d  o_rcvVar                  65535a         options(*varsize)
+     d  i_lenRcvVar                  10i 0 const
+     d  o_retFileName                20A
+     d  i_format                      8a   const
+     d  i_qFile                      20A   const
+     d  i_rcdFormat                  10a   const
+     d  i_override                    1a   const
+     d  i_system                     10a   const
+     d  i_formatType                 10a   const
+     d  io_errCode                65535a          options(*varsize )
       *
       * ---------------------------------------------------
       *  FILD0100:
       * ---------------------------------------------------
       *
       *  File Definition Header (Qdb_Qdbfh)
-     D Qdb_Qdbfh_t     DS                  qualified               based(pDummy)
-     D  Qdbfyret               1      4I 0
-     D  Qdbfyavl               5      8I 0
-     D  Qdbfhflg               9     10U 0
-     D  Reserved_7            11     14A
-     D  Qdbflbnum             15     16I 0
-     D  Qdbfknum              17     18I 0
-     D  Qdbfkmxl              19     20I 0
-     D  Qdbfkflg              21     21A
-     D  Qdbfkfdm              22     22A
-     D  Reserved_10           23     30A
-     D  Qdbfhaut              31     40A
-     D  Qdbfhupl              41     41A
-     D  Qdbfhmxm              42     43I 0
-     D  Qdbfwtfi              44     45I 0
-     D  Qdbfhfrt              46     47I 0
-     D  Qdbfhmnum             48     49I 0
-     D  Qdbfapsize            50     51I 0
-     D  Reserved_11           52     58A
-     D  Qdbfbrwt              59     60I 0
-     D  Qaaf                  61     61A
-     D  Qdbffmtnum            62     63I 0
-     D  Qdbfhfl2              64     65A
-     D  Qdbfvrm               66     67I 0
-     D  Qaaf2                 68     69A
-     D  Qdbfhcrt              70     82A
-     D  Reserved_18           83     84A
-     D  Qdbfhtxt              85    134A
-     D  Reserved_19          135    147A
-     D  Qdbfsrcf             148    157A
-     D  Qdbfsrcm             158    167A
-     D  Qdbfsrcl             168    177A
-     D  Qdbfkrcv             178    178A
-     D  Reserved_20          179    201A
-     D  Qdbftcid             202    203I 0
-     D  Qdbfasp              204    205I 0
-     D  Qdbfnbit             206    206A
-     D  Qdbfmxfnum           207    208I 0
-     D  Reserved_22          209    284A
-     D  Qdbfodic             285    288I 0
-     D  Reserved_23          289    302A
-     D  Qdbffigl             303    304I 0
-     D  Qdbfmxrl             305    306I 0
-     D  Reserved_24          307    314A
-     D  Qdbfgkct             315    316I 0
-     D  Qdbfos               317    320I 0
-     D  Reserved_25          321    328A
-     D  Qdbfocs              329    332I 0
-     D  Reserved_26          333    336A
-     D  Qdbfpact             337    338A
-     D  Qdbfhrls             339    344A
-     D  Reserved_27          345    364A
-     D  Qdbpfof              365    368I 0
-     D  Qdblfof              369    372I 0
-     D  Qdbfnlsb             373    373A
-     D  Qdbflang             374    376A
-     D  Qdbfcnty             377    378A
-     D  Qdbfjorn             379    382I 0
-     D  Qdbfevid             383    386I 0
-     D  Reserved_28          387    400A
+     d Qdb_Qdbfh_t     ds                  qualified               based(pDummy)
+     d  Qdbfyret               1      4I 0
+     d  Qdbfyavl               5      8I 0
+     d  Qdbfhflg               9     10U 0
+     d  Reserved_7            11     14A
+     d  Qdbflbnum             15     16I 0
+     d  Qdbfknum              17     18I 0
+     d  Qdbfkmxl              19     20I 0
+     d  Qdbfkflg              21     21A
+     d  Qdbfkfdm              22     22A
+     d  Reserved_10           23     30A
+     d  Qdbfhaut              31     40A
+     d  Qdbfhupl              41     41A
+     d  Qdbfhmxm              42     43I 0
+     d  Qdbfwtfi              44     45I 0
+     d  Qdbfhfrt              46     47I 0
+     d  Qdbfhmnum             48     49I 0
+     d  Qdbfapsize            50     51I 0
+     d  Reserved_11           52     58A
+     d  Qdbfbrwt              59     60I 0
+     d  Qaaf                  61     61A
+     d  Qdbffmtnum            62     63I 0
+     d  Qdbfhfl2              64     65A
+     d  Qdbfvrm               66     67I 0
+     d  Qaaf2                 68     69A
+     d  Qdbfhcrt              70     82A
+     d  Reserved_18           83     84A
+     d  Qdbfhtxt              85    134A
+     d  Reserved_19          135    147A
+     d  Qdbfsrcf             148    157A
+     d  Qdbfsrcm             158    167A
+     d  Qdbfsrcl             168    177A
+     d  Qdbfkrcv             178    178A
+     d  Reserved_20          179    201A
+     d  Qdbftcid             202    203I 0
+     d  Qdbfasp              204    205I 0
+     d  Qdbfnbit             206    206A
+     d  Qdbfmxfnum           207    208I 0
+     d  Reserved_22          209    284A
+     d  Qdbfodic             285    288I 0
+     d  Reserved_23          289    302A
+     d  Qdbffigl             303    304I 0
+     d  Qdbfmxrl             305    306I 0
+     d  Reserved_24          307    314A
+     d  Qdbfgkct             315    316I 0
+     d  Qdbfos               317    320I 0
+     d  Reserved_25          321    328A
+     d  Qdbfocs              329    332I 0
+     d  Reserved_26          333    336A
+     d  Qdbfpact             337    338A
+     d  Qdbfhrls             339    344A
+     d  Reserved_27          345    364A
+     d  Qdbpfof              365    368I 0
+     d  Qdblfof              369    372I 0
+     d  Qdbfnlsb             373    373A
+     d  Qdbflang             374    376A
+     d  Qdbfcnty             377    378A
+     d  Qdbfjorn             379    382I 0
+     d  Qdbfevid             383    386I 0
+     d  Reserved_28          387    400A
       *
       *  File Scope Array (Qdb_Qdbfb)
-     D Qdb_Qdbfb_t     DS                  qualified               based(pDummy)
-     D  Reserved_48            1     48A
-     D  Qdbfbf                49     58A
-     D  Qdbfbfl               59     68A
-     D  Qdbft                 69     78A
-     D  Reserved_49           79    115A
-     D  Qdbfbgky             116    117I 0
-     D  Reserved_50          118    119A
-     D  Qdbfblky             120    121I 0
-     D  Reserved_51          122    123A
-     D  Qdbffogl             124    125I 0
-     D  Reserved_52          126    128A
-     D  Qdbfsoon             129    130I 0
-     D  Qdbfsoof             131    134I 0
-     D  Qdbfksof             135    138I 0
-     D  Qdbfkyct             139    140I 0
-     D  Qdbfgenf             141    142I 0
-     D  Qdbfodis             143    146I 0
-     D  Reserved_53          146    160A
+     d Qdb_Qdbfb_t     ds                  qualified               based(pDummy)
+     d  Reserved_48            1     48A
+     d  Qdbfbf                49     58A
+     d  Qdbfbfl               59     68A
+     d  Qdbft                 69     78A
+     d  Reserved_49           79    115A
+     d  Qdbfbgky             116    117I 0
+     d  Reserved_50          118    119A
+     d  Qdbfblky             120    121I 0
+     d  Reserved_51          122    123A
+     d  Qdbffogl             124    125I 0
+     d  Reserved_52          126    128A
+     d  Qdbfsoon             129    130I 0
+     d  Qdbfsoof             131    134I 0
+     d  Qdbfksof             135    138I 0
+     d  Qdbfkyct             139    140I 0
+     d  Qdbfgenf             141    142I 0
+     d  Qdbfodis             143    146I 0
+     d  Reserved_53          146    160A
       *
       *  Key Specification Array (Qdb_Qdbfk)
-     D Qdb_Qdbfk_t     DS                  qualified               based(pDummy)
-     D  Qdbfkfld               1     10A
-     D  Reserved_59           11     13A
-     D  Qdbfksq               14     14A
-     D  Reserved_61           15     32A
+     d Qdb_Qdbfk_t     ds                  qualified               based(pDummy)
+     d  Qdbfkfld               1     10A
+     d  Reserved_59           11     13A
+     d  Qdbfksq               14     14A
+     d  Reserved_61           15     32A
+      *
+      *  ... Physical File Specific Attributes (Qdb_Qdbfphys)
+     D Qdb_Qdbfphys_t  DS                  qualified            based(pDummy)
+     D  Qdbfpalc               1      2A
+     D  Qdbfcmps               3      3A
+     D  Reserved_29            4     11A
+     D  Qdbfprnum             12     15I 0
+     D  Qdbfpri               16     17I 0
+     D  Qdbfprinum            18     19I 0
+     D  Qdbforid              20     23I 0
+     D  Qflags                24     24A
+     D  Qdbfotrg              25     28A
+     D  Qdbftrgn              29     30I 0
+     D  Qdbfofcs              31     34I 0
+     D  Qdbfcstn              35     38I 0
+     D  Qdbfodl               39     42I 0
+     D  Reserved_32           43     48A
+      *
+      *  ... Constraint Definition Header (Qdb_Qdbf_Constraint)
+     D Qdb_Qdbf_Constraint_t...
+     D                 DS                  qualified            based(pDummy)
+     D Qdbf_csto               1      4I 0
+     D Qdbf_hlen               5      8I 0
+     D Qdbf_type               9      9A
+     D Qdbf_chkpd             10     10A
+     D Qdbf_state             11     11A
+     D Qdbf_abled             12     12A
+     D Qdbf_add_ts            13     25A
+     D Qdbf_cst_lin           26     35A
+     D Qdbf_cst_lp2           36     39I 0
+     D Reserved_54            40     64A
+     D Qdbf_cst_name          65    322A
+      *
+      *  ... Constraint Keys (Qdb_Qdbf_Keyn)
+     D Qdb_Qdbf_Keyn_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_kslen             1      4I 0
+     D  Qdbf_nokys             5      8I 0
+     D  Qdbf_klen              9     12I 0
+     D  Revcst_7              13     64A
+     D  Qdbf_narray           65   3904A
+      *
+      *  ... Key Name Array (Qdb_Qdbf_Narray)
+     D Qdb_Qdbf_Narray_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_kname             1     10A
+     D  Revcst_6              11     32A
+      *
+      *  ... Referential Constraint Definition (Qdb_Qdbf_Riafk_Afkd)
+     D Qdb_Qdbf_Riafk_Afkd_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_riafk_pkfn...
+     D                         1     10A
+     D  Qdbf_riafk_pkln...
+     D                        11     20A
+     D  Revcst_3...
+     D                        21     64A
+     D  Qdbf_riafk_fkcdr...
+     D                        65     65A
+     D  Revcst_4...
+     D                        66     66A
+     D  Qdbf_riafk_fkcur...
+     D                        67     67A
+     D  Revcst_5...
+     D                        68    128A
+      *
+      *  ... Check Constraint (Qdb_Qdbf_Chk_Cst)
+     D Qdb_Qdbf_Chk_Cst_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_chkcst_len...
+     D                         1      4I 0
+     D  Qdbf_chkexpr_len...
+     D                         5      8I 0
+     D  Revcst_8...
+     D                         9     32A
+     D  Qdbf_chkexpr...
+     D                        33   2000A
       *
       * ---------------------------------------------------
       *  FILD0200
       * ---------------------------------------------------
       *
       *  Format Definition Header (Qdb_Qddfmt)
-     D Qdb_Qddfmt_t    DS           256    qualified               based(pDummy)
-     D  bytRet                 1      4I 0
-     D  bytAvl                 5      8I 0
-     D  Reserved_62            9     32A
-     D  Qddfmtf               33     33A
-     D  Qddfxlto              34     37I 0
-     D  Qddfrcao              38     41I 0
-     D  Qddfdico              42     45I 0
-     D  Qddfrcid              46     47I 0
-     D  Qddfsrcd              48     49I 0
-     D  Qddfrtcd              50     51I 0
-     D  Qddfrlcd              52     53I 0
-     D  Reserved_64           54     60A
-     D  Qddftflgs             61     61A
-     D  Qddflgs               62     62U 0
-     D  Reserved_67           63     66A
-     D  Qddfrlen              67     70I 0
-     D  Qddfname              71     80A
-     D  Qddfseq               81     93A
-     D  Qddftext              94    143A
-     D  Qddffldnum           144    145I 0
-     D  Qddf_Identity_Off...
-     D                       146    149I 0
-      * Qddffldx             257    CHAR(*)   Start of field definition array (Qdb_Qddffld).
+     d Qdb_Qddfmt_t    ds                  qualified               based(pDummy)
+     d  bytRet                 1      4I 0
+     d  bytAvl                 5      8I 0
+     d  Reserved_62            9     32A
+     d  Qddfmtf               33     33A
+     d  Qddfxlto              34     37I 0
+     d  Qddfrcao              38     41I 0
+     d  Qddfdico              42     45I 0
+     d  Qddfrcid              46     47I 0
+     d  Qddfsrcd              48     49I 0
+     d  Qddfrtcd              50     51I 0
+     d  Qddfrlcd              52     53I 0
+     d  Reserved_64           54     60A
+     d  Qddftflgs             61     61A
+     d  Qddflgs               62     62U 0
+     d  Reserved_67           63     66A
+     d  Qddfrlen              67     70I 0
+     d  Qddfname              71     80A
+     d  Qddfseq               81     93A
+     d  Qddftext              94    143A
+     d  Qddffldnum           144    145I 0
+     d  Qddf_Identity_Off...
+     d                       146    149I 0
+      * Qddffldx                    CHAR(*)   Start of field definition array (Qdb_Qddffld)
+     d  Qddffldx             257    512A
+      *
+      *  Identity Column Information (Qdb_Qddfidcl)
+     d Qdb_Qddfidcl_t  ds                  qualified               based(pDummy)
+     d  Qddf_Id_Len            1      2i 0
+     d  Qddf_Id_Orig_Start_With...
+     d                         3     18p 0
+     d  Qddf_Id_Curr_Start_With...
+     d                        19     34p 0
+     d  Qddf_Id_Increment_By...
+     d                        35     38i 0
+     d  Qddf_Id_Minimum...
+     d                        39     54p 0
+     d  Qddf_Id_Maximum...
+     d                        55     70p 0
+     d  Qddf_Id_Cycle...
+     d                        71     71a
+     d  Qddf_Id_Order...
+     d                        72     72a
+     d  Qddf_Id_Generate...
+     d                        73     73a
+     d  Qddf_Id_Curr_Cache...
+     d                        74     77u 0
+     d  Qddf_Rowid_Generate...
+     d                        78     78a
+     d  Qddf_Id_Reserved1...
+     d                        79    131a
       *
       *  Field Header (Qdb_Qddffld)
-     D Qdb_Qddffld_t   DS                  qualified               based(pDummy)
-     D  Qddfdefl               1      4I 0
-     D  Qddffldi               5     34A
-     D  Qddfflde              35     64A
-     D  Qddfftyp              65     66A
-     D  Qddffiob              67     67A
-     D  Qddffobo              68     71I 0
-     D  Qddffibo              72     75I 0
-     D  Qddffldb              76     77I 0
-     D  Qddffldd              78     79I 0
-     D  Qddffldp              80     81I 0
+     d Qdb_Qddffld_t   ds                  qualified               based(pDummy)
+     d  Qddfdefl               1      4I 0
+     d  Qddffldi               5     34A
+     d  Qddfflde              35     64A
+     d  Qddfftyp              65     66A
+     d  Qddffiob              67     67A
+     d  Qddffobo              68     71I 0
+     d  Qddffibo              72     75I 0
+     d  Qddffldb              76     77I 0
+     d  Qddffldd              78     79I 0
+     d  Qddffldp              80     81I 0
       *  ...
-     D  Qddffldst2            86     86U 0
+     d  Qddffldst2            86     86U 0
       *  ...
-     D  Qddflalc              92     93U 0
-     D  Qddfdttf              94     94A
-     D  Qddfdtts              95     95A
-     D  Qddfcsid              96     97U 0
+     d  Qddflalc              92     93U 0
+     d  Qddfdttf              94     94A
+     d  Qddfdtts              95     95A
+     d  Qddfcsid              96     97U 0
       *  ...
-     D  Qddfdftd             195    198U 0
+     d  Qddfdftd             195    198U 0
       *  ...
-     D  Qddftxtd             209    212I 0
-     D  Reserved_102         213    214A
-     D  Qddfrefd             215    218I 0
-     D  Qddfedtl             219    220I 0
-     D  Qddfedtd             221    224I 0
-     D  Reserved_76          225    226I 0
-     D  Qddfchd              227    230I 0
+     d  Qddftxtd             209    212I 0
+     d  Reserved_102         213    214A
+     d  Qddfrefd             215    218I 0
+     d  Qddfedtl             219    220I 0
+     d  Qddfedtd             221    224I 0
+     d  Reserved_76          225    226I 0
+     d  Qddfchd              227    230I 0
       *  ...
-     D  Qddfxals             237    240I 0
+     d  Qddfxals             237    240I 0
       *
       *  Reference Information (Qdb_Qddfrefi)
-     D Qdb_Qddfrefi_t  DS                  qualified               based(pDummy)
-     D  Qddfrcde               1      1A
-     D  Qddfrfil               2     11A
-     D  Qddfrlib              12     21A
-     D  Qddfrfmt              22     31A
-     D  Qddfrfld              32     61A
-     D  Reserved_78           62     80A
+     d Qdb_Qddfrefi_t  ds                  qualified               based(pDummy)
+     d  Qddfrcde               1      1A
+     d  Qddfrfil               2     11A
+     d  Qddfrlib              12     21A
+     d  Qddfrfmt              22     31A
+     d  Qddfrfld              32     61A
+     d  Reserved_78           62     80A
       *
       *  Edit Code/Edit Word Information (Qdb_Qddfedcw)
-     D Qdb_Qddfedcw_t  DS                  qualified               based(pDummy)
-     D  Qddfecdi               1      2A
-     D  Qddfecde               1      1A
-     D  Qddfecdx               2      2A
-     D  Reserved_79            3     16A
-     D  Qddfewd               17     80A
+     d Qdb_Qddfedcw_t  ds                  qualified               based(pDummy)
+     d  Qddfecdi               1      2A
+     d  Qddfecde               1      1A
+     d  Qddfecdx               2      2A
+     d  Reserved_79            3     16A
+     d  Qddfewd               17     80A
       *
       *  Field Text (Qdb_Qddfftxt)
-     D Qdb_Qddfftxt_t  DS                  qualified               based(pDummy)
-     D  Qddfftxt               1     50A
+     d Qdb_Qddfftxt_t  ds                  qualified               based(pDummy)
+     d  Qddfftxt               1     50A
       *
       *  Alias name structure (Qdb_Qddfalis)
-     D Qdb_Qddfalis_t  DS                  qualified               based(pDummy)
-     D  Qddfalsl               1      2I 0
-     D  Reserved_85            3     16A
-     D  Qddfalsn              17    274A
+     d Qdb_Qddfalis_t  ds                  qualified               based(pDummy)
+     d  Qddfalsl               1      2I 0
+     d  Reserved_85            3     16A
+     d  Qddfalsn              17    274A
       *
       *  Default Value Description Information (Qdb_Qddfdft)
-     D Qdb_Qddfdft_t   DS                  qualified               based(pDummy)
-     D  Qddfdftl               1      2I 0
-     D  Qddfdfta               3      3U 0
-     D  Reserved_87            4     16A
-      * Qddfdftv              17    CHAR(*)   Default Value.
+     d Qdb_Qddfdft_t   ds                  qualified               based(pDummy)
+     d  Qddfdftl               1      2I 0
+     d  Qddfdfta               3      3U 0
+     d  Reserved_87            4     16A
+     d  Qddfdftv              17  32740A
       *
-     D QDDFDFTA_GRAPHIC...
-     D                 C                   128                                  DBCS/graphic d
-     D QDDFDFTA_HEX...
-     D                 C                   32                                   Hex default.
-     D QDDFDFTA_NULL...
-     D                 C                   4                                    Null default.
-     D QDDFDFTA_DATE_TIME...
-     D                 C                   2                                    Current date/t
-     D QDDFDFTA_DFT_KEYWORD...
-     D                 C                   1                                    DFT/DFTVAL spe
+     d QDDFDFTA_GRAPHIC...
+     d                 c                   128                                  DBCS/graphic d
+     d QDDFDFTA_HEX...
+     d                 c                   32                                   Hex default.
+     d QDDFDFTA_NULL...
+     d                 c                   4                                    Null default.
+     d QDDFDFTA_DATE_TIME...
+     d                 c                   2                                    Current date/t
+     d QDDFDFTA_DFT_KEYWORD...
+     d                 c                   1                                    DFT/DFTVAL spe
       *
       *  Column Heading Information (Qdb_Qddfcolh)
-     D Qdb_Qddfcolh_t  DS                  qualified               based(pDummy)
-     D  Qddfch1                1     20A
-     D  Qddfch2               21     40A
-     D  Qddfch3               41     60A
+     d Qdb_Qddfcolh_t  ds                  qualified               based(pDummy)
+     d  Qddfch1                1     20A
+     d  Qddfch2               21     40A
+     d  Qddfch3               41     60A
       *
-      /ENDIF
+      /endif
