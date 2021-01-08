@@ -28,7 +28,6 @@
      /*       >>PARM<<  ALWUPD(*YES);                                       */
      /*       >>PARM<<  ALWLIBUPD(*YES);                                    */
      /*       >>PARM<<  BNDSRVPGM(BASICS1);                                 */
-     /*       >>PARM<<  TGTRLS(V6R1M0);                                     */
      /*       >>PARM<<  TEXT('SrvPgm  : Retrieve Field Attributes');        */
      /*     >>END-LINK<<                                                    */
      /*                                                                     */

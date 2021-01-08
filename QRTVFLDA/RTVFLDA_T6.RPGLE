@@ -21,24 +21,20 @@
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)

@@ -22,27 +22,22 @@
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
-     H BNDDIR('QC2LE')
      H EXTBININT(*YES)
      H DATFMT(*ISO) TIMFMT(*ISO) DEBUG(*YES)
       *=====================================================================*
@@ -98,7 +93,6 @@
       *
      D msg             DS                  likeds(msg_t        ) inz
      D flda0100        DS                  likeds(flda0100_t   ) inz
-     D fldAttr         S                   like(flda0100       ) inz
       *
      D data            S           8196A   inz
      D pNumData        S               *   inz
@@ -123,9 +117,7 @@
 
          // Spin through field list ...
          // ... get first field
-         isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_FIRST: fldAttr);
-
-         flda0100 = fldAttr;
+         isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_FIRST: flda0100);
 
          dow isOK;
 
@@ -185,8 +177,7 @@
             f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
 
             // ... get next field
-            isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_NEXT: fldAttr);
-            flda0100 = fldAttr;
+            isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_NEXT: flda0100);
          enddo;
 
          // Close dictionary
