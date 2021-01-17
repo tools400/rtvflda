@@ -51,7 +51,7 @@
       appblddate CDATA #REQUIRED
      >
      ]>
-<upload  appname="RTVFLDA"  appauthor="Thomas Raddatz"  appblddate=" 4/19/2018">
+<upload  appname="RTVFLDA"  appauthor="Thomas Raddatz"  appblddate=" 1/17/2021">
 <install_instructions><![CDATA[
      *----------------------------------------------------------------      ------
      *  1. Upload entire XML to your AS/400 to a source file 112 long, into any mbr
@@ -1289,7 +1289,7 @@ mbrtext =  "RTVFLDA - Installer                               "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
      /* =================================================================== */
      /*                                                                     */
@@ -1558,7 +1558,7 @@ mbrtext =  "RTVFLDA Readme                                    "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
 RTVFLDA - A Tools/400 Service Program
 -------------------------------------
@@ -1591,16 +1591,16 @@ mbrtext =  "Copyright information                             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /if not defined(COPYRIGHT_DSPEC)
-     h COPYRIGHT('V1.8 - 09.02.2017 - mailto: thomas.raddatz@tools400.de')
+     h COPYRIGHT('V1.9 - 17.01.2021 - mailto: thomas.raddatz@tools400.de')
       /eof
       /endif
      d RTVFLDA_VERSION...
-     d                 C                   '1.8'
+     d                 C                   '1.9'
      d RTVFLDA_DATE...
-     d                 C                   '09.02.2017'
+     d                 C                   '17.01.2021'
       *
 ]]>  </copysrc>
 </mbr>
@@ -1611,11 +1611,11 @@ Installing FDFLDA0100  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0100"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0100                 "
+mbrtext =  "QRTVFLDA - Format FLDA0100                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0100_t)
       /DEFINE flda0100_t
@@ -1673,11 +1673,11 @@ Installing FDFLDA0200  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0200"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0200                 "
+mbrtext =  "QRTVFLDA - Format FLDA0200                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0200_t)
       /DEFINE flda0200_t
@@ -1745,11 +1745,11 @@ Installing FDFLDA0300  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0300"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0300                 "
+mbrtext =  "QRTVFLDA - Format FLDA0300                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0300_t)
       /DEFINE flda0300_t
@@ -1821,11 +1821,11 @@ Installing FDFLDA0310  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0310"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0310                 "
+mbrtext =  "QRTVFLDA - Format FLDA0310                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0310_t)
       /DEFINE flda0310_t
@@ -1902,11 +1902,11 @@ Installing FDFLDA0320  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0320"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0320                 "
+mbrtext =  "QRTVFLDA - Format FLDA0320                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0320_t)
       /DEFINE flda0320_t
@@ -1986,11 +1986,11 @@ Installing FDFLDA0330  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0330"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0330                 "
+mbrtext =  "QRTVFLDA - Format FLDA0330                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0330_t)
       /DEFINE flda0330_t
@@ -2073,11 +2073,11 @@ Installing FDFLDA0340  type RPGLE - in progress.
 <mbr
 mbrname =  "FDFLDA0340"
 mbrtype =  "RPGLE     "
-mbrtext =  "Ext.DS  : QDBRTVFD API - FLDA0340                 "
+mbrtext =  "QRTVFLDA - Format FLDA0340                        "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       /IF NOT DEFINED(flda0340_t)
       /DEFINE flda0340_t
@@ -2173,7 +2173,7 @@ mbrtext =  "Retrieve Field Attributes - Public Interface      "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -2189,6 +2189,7 @@ srccssid=  "00273">
       /COPY QRTVFLDA,FDFLDA0320
       /COPY QRTVFLDA,FDFLDA0330
       /COPY QRTVFLDA,FDFLDA0340
+      /COPY QRTVFLDA,FDFLDA0350
       *
      D fldDct_handle_t...
      D                 S               *   based(pDummy)
@@ -2413,233 +2414,340 @@ mbrtext =  "Retrieve Database File Description (QDBRTVFD) API "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
-      /IF NOT DEFINED(QDBRTVFD)
-      /DEFINE QDBRTVFD
+      /if not defined(QDBRTVFD)
+      /define QDBRTVFD
       *
       *  Retrieve Database File Description (QDBRTVFD) API
-     D QDBRTVFD...
-     D                 PR                  extpgm('QDBRTVFD')
-     D  o_rcvVar                  65535A         options(*varsize)
-     D  i_lenRcvVar                  10I 0 const
-     D  o_retFileName                20A
-     D  i_format                      8A   const
-     D  i_qFile                      20A   const
-     D  i_rcdFormat                  10A   const
-     D  i_override                    1A   const
-     D  i_system                     10A   const
-     D  i_formatType                 10A   const
-     D  io_errCode                65535A          options(*varsize )
+     d QDBRTVFD...
+     d                 pr                  extpgm('QDBRTVFD')
+     d  o_rcvVar                  65535a         options(*varsize)
+     d  i_lenRcvVar                  10i 0 const
+     d  o_retFileName                20A
+     d  i_format                      8a   const
+     d  i_qFile                      20A   const
+     d  i_rcdFormat                  10a   const
+     d  i_override                    1a   const
+     d  i_system                     10a   const
+     d  i_formatType                 10a   const
+     d  io_errCode                65535a          options(*varsize )
       *
       * ---------------------------------------------------
       *  FILD0100:
       * ---------------------------------------------------
       *
       *  File Definition Header (Qdb_Qdbfh)
-     D Qdb_Qdbfh_t     DS                  qualified               based(pDummy)
-     D  Qdbfyret               1      4I 0
-     D  Qdbfyavl               5      8I 0
-     D  Qdbfhflg               9     10U 0
-     D  Reserved_7            11     14A
-     D  Qdbflbnum             15     16I 0
-     D  Qdbfknum              17     18I 0
-     D  Qdbfkmxl              19     20I 0
-     D  Qdbfkflg              21     21A
-     D  Qdbfkfdm              22     22A
-     D  Reserved_10           23     30A
-     D  Qdbfhaut              31     40A
-     D  Qdbfhupl              41     41A
-     D  Qdbfhmxm              42     43I 0
-     D  Qdbfwtfi              44     45I 0
-     D  Qdbfhfrt              46     47I 0
-     D  Qdbfhmnum             48     49I 0
-     D  Qdbfapsize            50     51I 0
-     D  Reserved_11           52     58A
-     D  Qdbfbrwt              59     60I 0
-     D  Qaaf                  61     61A
-     D  Qdbffmtnum            62     63I 0
-     D  Qdbfhfl2              64     65A
-     D  Qdbfvrm               66     67I 0
-     D  Qaaf2                 68     69A
-     D  Qdbfhcrt              70     82A
-     D  Reserved_18           83     84A
-     D  Qdbfhtxt              85    134A
-     D  Reserved_19          135    147A
-     D  Qdbfsrcf             148    157A
-     D  Qdbfsrcm             158    167A
-     D  Qdbfsrcl             168    177A
-     D  Qdbfkrcv             178    178A
-     D  Reserved_20          179    201A
-     D  Qdbftcid             202    203I 0
-     D  Qdbfasp              204    205I 0
-     D  Qdbfnbit             206    206A
-     D  Qdbfmxfnum           207    208I 0
-     D  Reserved_22          209    284A
-     D  Qdbfodic             285    288I 0
-     D  Reserved_23          289    302A
-     D  Qdbffigl             303    304I 0
-     D  Qdbfmxrl             305    306I 0
-     D  Reserved_24          307    314A
-     D  Qdbfgkct             315    316I 0
-     D  Qdbfos               317    320I 0
-     D  Reserved_25          321    328A
-     D  Qdbfocs              329    332I 0
-     D  Reserved_26          333    336A
-     D  Qdbfpact             337    338A
-     D  Qdbfhrls             339    344A
-     D  Reserved_27          345    364A
-     D  Qdbpfof              365    368I 0
-     D  Qdblfof              369    372I 0
-     D  Qdbfnlsb             373    373A
-     D  Qdbflang             374    376A
-     D  Qdbfcnty             377    378A
-     D  Qdbfjorn             379    382I 0
-     D  Qdbfevid             383    386I 0
-     D  Reserved_28          387    400A
+     d Qdb_Qdbfh_t     ds                  qualified               based(pDummy)
+     d  Qdbfyret               1      4I 0
+     d  Qdbfyavl               5      8I 0
+     d  Qdbfhflg               9     10U 0
+     d  Reserved_7            11     14A
+     d  Qdbflbnum             15     16I 0
+     d  Qdbfknum              17     18I 0
+     d  Qdbfkmxl              19     20I 0
+     d  Qdbfkflg              21     21A
+     d  Qdbfkfdm              22     22A
+     d  Reserved_10           23     30A
+     d  Qdbfhaut              31     40A
+     d  Qdbfhupl              41     41A
+     d  Qdbfhmxm              42     43I 0
+     d  Qdbfwtfi              44     45I 0
+     d  Qdbfhfrt              46     47I 0
+     d  Qdbfhmnum             48     49I 0
+     d  Qdbfapsize            50     51I 0
+     d  Reserved_11           52     58A
+     d  Qdbfbrwt              59     60I 0
+     d  Qaaf                  61     61A
+     d  Qdbffmtnum            62     63I 0
+     d  Qdbfhfl2              64     65A
+     d  Qdbfvrm               66     67I 0
+     d  Qaaf2                 68     69A
+     d  Qdbfhcrt              70     82A
+     d  Reserved_18           83     84A
+     d  Qdbfhtxt              85    134A
+     d  Reserved_19          135    147A
+     d  Qdbfsrcf             148    157A
+     d  Qdbfsrcm             158    167A
+     d  Qdbfsrcl             168    177A
+     d  Qdbfkrcv             178    178A
+     d  Reserved_20          179    201A
+     d  Qdbftcid             202    203I 0
+     d  Qdbfasp              204    205I 0
+     d  Qdbfnbit             206    206A
+     d  Qdbfmxfnum           207    208I 0
+     d  Reserved_22          209    282A
+     d  Qdb_Qdbfidfl         283    284U 0
+     d  Qdbfodic             285    288I 0
+     d  Reserved_23          289    302A
+     d  Qdbffigl             303    304I 0
+     d  Qdbfmxrl             305    306I 0
+     d  Reserved_24          307    314A
+     d  Qdbfgkct             315    316I 0
+     d  Qdbfos               317    320I 0
+     d  Reserved_25          321    328A
+     d  Qdbfocs              329    332I 0
+     d  Reserved_26          333    336A
+     d  Qdbfpact             337    338A
+     d  Qdbfhrls             339    344A
+     d  Reserved_27          345    364A
+     d  Qdbpfof              365    368I 0
+     d  Qdblfof              369    372I 0
+     d  Qdbfnlsb             373    373A
+     d  Qdbflang             374    376A
+     d  Qdbfcnty             377    378A
+     d  Qdbfjorn             379    382I 0
+     d  Qdbfevid             383    386I 0
+     d  Reserved_28          387    400A
       *
       *  File Scope Array (Qdb_Qdbfb)
-     D Qdb_Qdbfb_t     DS                  qualified               based(pDummy)
-     D  Reserved_48            1     48A
-     D  Qdbfbf                49     58A
-     D  Qdbfbfl               59     68A
-     D  Qdbft                 69     78A
-     D  Reserved_49           79    115A
-     D  Qdbfbgky             116    117I 0
-     D  Reserved_50          118    119A
-     D  Qdbfblky             120    121I 0
-     D  Reserved_51          122    123A
-     D  Qdbffogl             124    125I 0
-     D  Reserved_52          126    128A
-     D  Qdbfsoon             129    130I 0
-     D  Qdbfsoof             131    134I 0
-     D  Qdbfksof             135    138I 0
-     D  Qdbfkyct             139    140I 0
-     D  Qdbfgenf             141    142I 0
-     D  Qdbfodis             143    146I 0
-     D  Reserved_53          146    160A
+     d Qdb_Qdbfb_t     ds                  qualified               based(pDummy)
+     d  Reserved_48            1     48A
+     d  Qdbfbf                49     58A
+     d  Qdbfbfl               59     68A
+     d  Qdbft                 69     78A
+     d  Reserved_49           79    115A
+     d  Qdbfbgky             116    117I 0
+     d  Reserved_50          118    119A
+     d  Qdbfblky             120    121I 0
+     d  Reserved_51          122    123A
+     d  Qdbffogl             124    125I 0
+     d  Reserved_52          126    128A
+     d  Qdbfsoon             129    130I 0
+     d  Qdbfsoof             131    134I 0
+     d  Qdbfksof             135    138I 0
+     d  Qdbfkyct             139    140I 0
+     d  Qdbfgenf             141    142I 0
+     d  Qdbfodis             143    146I 0
+     d  Reserved_53          146    160A
       *
       *  Key Specification Array (Qdb_Qdbfk)
-     D Qdb_Qdbfk_t     DS                  qualified               based(pDummy)
-     D  Qdbfkfld               1     10A
-     D  Reserved_59           11     13A
-     D  Qdbfksq               14     14A
-     D  Reserved_61           15     32A
+     d Qdb_Qdbfk_t     ds                  qualified               based(pDummy)
+     d  Qdbfkfld               1     10A
+     d  Reserved_59           11     13A
+     d  Qdbfksq               14     14A
+     d  Reserved_61           15     32A
+      *
+      *  ... Physical File Specific Attributes (Qdb_Qdbfphys)
+     D Qdb_Qdbfphys_t  DS                  qualified            based(pDummy)
+     D  Qdbfpalc               1      2A
+     D  Qdbfcmps               3      3A
+     D  Reserved_29            4     11A
+     D  Qdbfprnum             12     15I 0
+     D  Qdbfpri               16     17I 0
+     D  Qdbfprinum            18     19I 0
+     D  Qdbforid              20     23I 0
+     D  Qflags                24     24A
+     D  Qdbfotrg              25     28A
+     D  Qdbftrgn              29     30I 0
+     D  Qdbfofcs              31     34I 0
+     D  Qdbfcstn              35     38I 0
+     D  Qdbfodl               39     42I 0
+     D  Reserved_32           43     48A
+      *
+      *  ... Constraint Definition Header (Qdb_Qdbf_Constraint)
+     D Qdb_Qdbf_Constraint_t...
+     D                 DS                  qualified            based(pDummy)
+     D Qdbf_csto               1      4I 0
+     D Qdbf_hlen               5      8I 0
+     D Qdbf_type               9      9A
+     D Qdbf_chkpd             10     10A
+     D Qdbf_state             11     11A
+     D Qdbf_abled             12     12A
+     D Qdbf_add_ts            13     25A
+     D Qdbf_cst_lin           26     35A
+     D Qdbf_cst_lp2           36     39I 0
+     D Reserved_54            40     64A
+     D Qdbf_cst_name          65    322A
+      *
+      *  ... Constraint Keys (Qdb_Qdbf_Keyn)
+     D Qdb_Qdbf_Keyn_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_kslen             1      4I 0
+     D  Qdbf_nokys             5      8I 0
+     D  Qdbf_klen              9     12I 0
+     D  Revcst_7              13     64A
+     D  Qdbf_narray           65   3904A
+      *
+      *  ... Key Name Array (Qdb_Qdbf_Narray)
+     D Qdb_Qdbf_Narray_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_kname             1     10A
+     D  Revcst_6              11     32A
+      *
+      *  ... Referential Constraint Definition (Qdb_Qdbf_Riafk_Afkd)
+     D Qdb_Qdbf_Riafk_Afkd_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_riafk_pkfn...
+     D                         1     10A
+     D  Qdbf_riafk_pkln...
+     D                        11     20A
+     D  Revcst_3...
+     D                        21     64A
+     D  Qdbf_riafk_fkcdr...
+     D                        65     65A
+     D  Revcst_4...
+     D                        66     66A
+     D  Qdbf_riafk_fkcur...
+     D                        67     67A
+     D  Revcst_5...
+     D                        68    128A
+      *
+      *  ... Check Constraint (Qdb_Qdbf_Chk_Cst)
+     D Qdb_Qdbf_Chk_Cst_t...
+     D                 DS                  qualified            based(pDummy)
+     D  Qdbf_chkcst_len...
+     D                         1      4I 0
+     D  Qdbf_chkexpr_len...
+     D                         5      8I 0
+     D  Revcst_8...
+     D                         9     32A
+     D  Qdbf_chkexpr...
+     D                        33   2000A
       *
       * ---------------------------------------------------
       *  FILD0200
       * ---------------------------------------------------
       *
       *  Format Definition Header (Qdb_Qddfmt)
-     D Qdb_Qddfmt_t    DS           256    qualified               based(pDummy)
-     D  bytRet                 1      4I 0
-     D  bytAvl                 5      8I 0
-     D  Reserved_62            9     32A
-     D  Qddfmtf               33     33A
-     D  Qddfxlto              34     37I 0
-     D  Qddfrcao              38     41I 0
-     D  Qddfdico              42     45I 0
-     D  Qddfrcid              46     47I 0
-     D  Qddfsrcd              48     49I 0
-     D  Qddfrtcd              50     51I 0
-     D  Qddfrlcd              52     53I 0
-     D  Reserved_64           54     60A
-     D  Qddftflgs             61     61A
-     D  Qddflgs               62     62U 0
-     D  Reserved_67           63     66A
-     D  Qddfrlen              67     70I 0
-     D  Qddfname              71     80A
-     D  Qddfseq               81     93A
-     D  Qddftext              94    143A
-     D  Qddffldnum           144    145I 0
-     D  Qddf_Identity_Off...
-     D                       146    149I 0
-      * Qddffldx             257    CHAR(*)   Start of field definition array (Qdb_Qddffld).
+     d Qdb_Qddfmt_t    ds                  qualified               based(pDummy)
+     d  bytRet                 1      4I 0
+     d  bytAvl                 5      8I 0
+     d  Reserved_62            9     32A
+     d  Qddfmtf               33     33A
+     d  Qddfxlto              34     37I 0
+     d  Qddfrcao              38     41I 0
+     d  Qddfdico              42     45I 0
+     d  Qddfrcid              46     47I 0
+     d  Qddfsrcd              48     49I 0
+     d  Qddfrtcd              50     51I 0
+     d  Qddfrlcd              52     53I 0
+     d  Reserved_64           54     60A
+     d  Qddftflgs             61     61A
+     d  Qddflgs               62     62U 0
+     d  Reserved_67           63     66A
+     d  Qddfrlen              67     70I 0
+     d  Qddfname              71     80A
+     d  Qddfseq               81     93A
+     d  Qddftext              94    143A
+     d  Qddffldnum           144    145I 0
+     d  Qddf_Identity_Off...
+     d                       146    149I 0
+      * Qddffldx                    CHAR(*)   Start of field definition array (Qdb_Qddffld)
+     d  Qddffldx             257    512A
+      *
+      *  Identity Column Information (Qdb_Qddfidcl)
+     d Qdb_Qddfidcl_t  ds                  qualified               based(pDummy)
+     d  Qddf_Id_Len            1      2i 0
+     d  Qddf_Id_Orig_Start_With...
+     d                         3     18p 0
+     d  Qddf_Id_Curr_Start_With...
+     d                        19     34p 0
+     d  Qddf_Id_Increment_By...
+     d                        35     38i 0
+     d  Qddf_Id_Minimum...
+     d                        39     54p 0
+     d  Qddf_Id_Maximum...
+     d                        55     70p 0
+     d  Qddf_Id_Cycle...
+     d                        71     71a
+     d  Qddf_Id_Order...
+     d                        72     72a
+     d  Qddf_Id_Generate...
+     d                        73     73a
+     d  Qddf_Id_Curr_Cache...
+     d                        74     77u 0
+     d  Qddf_Rowid_Generate...
+     d                        78     78a
+     d  Qddf_Id_Reserved1...
+     d                        79    131a
       *
       *  Field Header (Qdb_Qddffld)
-     D Qdb_Qddffld_t   DS                  qualified               based(pDummy)
-     D  Qddfdefl               1      4I 0
-     D  Qddffldi               5     34A
-     D  Qddfflde              35     64A
-     D  Qddfftyp              65     66A
-     D  Qddffiob              67     67A
-     D  Qddffobo              68     71I 0
-     D  Qddffibo              72     75I 0
-     D  Qddffldb              76     77I 0
-     D  Qddffldd              78     79I 0
-     D  Qddffldp              80     81I 0
+     d Qdb_Qddffld_t   ds                  qualified               based(pDummy)
+     d  Qddfdefl               1      4I 0
+     d  Qddffldi               5     34A
+     d  Qddfflde              35     64A
+     d  Qddfftyp              65     66A
+     d  Qddffiob              67     67A
+     d  Qddffobo              68     71I 0
+     d  Qddffibo              72     75I 0
+     d  Qddffldb              76     77I 0
+     d  Qddffldd              78     79I 0
+     d  Qddffldp              80     81I 0
       *  ...
-     D  Qddffldst2            86     86U 0
+     d  Qddffldst2            86     86U 0
       *  ...
-     D  Qddflalc              92     93U 0
-     D  Qddfdttf              94     94A
-     D  Qddfdtts              95     95A
-     D  Qddfcsid              96     97U 0
+     d  Qddflalc              92     93U 0
+     d  Qddfdttf              94     94A
+     d  Qddfdtts              95     95A
+     d  Qddfcsid              96     97U 0
       *  ...
-     D  Qddfdftd             195    198U 0
+     d  Qddflagco            112    112U 0
       *  ...
-     D  Qddftxtd             209    212I 0
-     D  Reserved_102         213    214A
-     D  Qddfrefd             215    218I 0
-     D  Qddfedtl             219    220I 0
-     D  Qddfedtd             221    224I 0
-     D  Reserved_76          225    226I 0
-     D  Qddfchd              227    230I 0
+     d  Qddfdftd             195    198U 0
       *  ...
-     D  Qddfxals             237    240I 0
+     d  Qddftxtd             209    212I 0
+     d  Reserved_102         213    214A
+     d  Qddfrefd             215    218I 0
+     d  Qddfedtl             219    220I 0
+     d  Qddfedtd             221    224I 0
+     d  Reserved_76          225    226I 0
+     d  Qddfchd              227    230I 0
+      *  ...
+     d  Qddfxals             237    240I 0
       *
       *  Reference Information (Qdb_Qddfrefi)
-     D Qdb_Qddfrefi_t  DS                  qualified               based(pDummy)
-     D  Qddfrcde               1      1A
-     D  Qddfrfil               2     11A
-     D  Qddfrlib              12     21A
-     D  Qddfrfmt              22     31A
-     D  Qddfrfld              32     61A
-     D  Reserved_78           62     80A
+     d Qdb_Qddfrefi_t  ds                  qualified               based(pDummy)
+     d  Qddfrcde               1      1A
+     d  Qddfrfil               2     11A
+     d  Qddfrlib              12     21A
+     d  Qddfrfmt              22     31A
+     d  Qddfrfld              32     61A
+     d  Reserved_78           62     80A
       *
       *  Edit Code/Edit Word Information (Qdb_Qddfedcw)
-     D Qdb_Qddfedcw_t  DS                  qualified               based(pDummy)
-     D  Qddfecdi               1      2A
-     D  Qddfecde               1      1A
-     D  Qddfecdx               2      2A
-     D  Reserved_79            3     16A
-     D  Qddfewd               17     80A
+     d Qdb_Qddfedcw_t  ds                  qualified               based(pDummy)
+     d  Qddfecdi               1      2A
+     d  Qddfecde               1      1A
+     d  Qddfecdx               2      2A
+     d  Reserved_79            3     16A
+     d  Qddfewd               17     80A
       *
       *  Field Text (Qdb_Qddfftxt)
-     D Qdb_Qddfftxt_t  DS                  qualified               based(pDummy)
-     D  Qddfftxt               1     50A
+     d Qdb_Qddfftxt_t  ds                  qualified               based(pDummy)
+     d  Qddfftxt               1     50A
       *
       *  Alias name structure (Qdb_Qddfalis)
-     D Qdb_Qddfalis_t  DS                  qualified               based(pDummy)
-     D  Qddfalsl               1      2I 0
-     D  Reserved_85            3     16A
-     D  Qddfalsn              17    274A
+     d Qdb_Qddfalis_t  ds                  qualified               based(pDummy)
+     d  Qddfalsl               1      2I 0
+     d  Reserved_85            3     16A
+     d  Qddfalsn              17    274A
       *
       *  Default Value Description Information (Qdb_Qddfdft)
-     D Qdb_Qddfdft_t   DS                  qualified               based(pDummy)
-     D  Qddfdftl               1      2I 0
-     D  Qddfdfta               3      3U 0
-     D  Reserved_87            4     16A
-      * Qddfdftv              17    CHAR(*)   Default Value.
+     d Qdb_Qddfdft_t   ds                  qualified               based(pDummy)
+     d  Qddfdftl               1      2I 0
+     d  Qddfdfta               3      3U 0
+     d  Reserved_87            4     16A
+     d  Qddfdftv              17  32740A
       *
-     D QDDFDFTA_GRAPHIC...
-     D                 C                   128                                  DBCS/graphic d
-     D QDDFDFTA_HEX...
-     D                 C                   32                                   Hex default.
-     D QDDFDFTA_NULL...
-     D                 C                   4                                    Null default.
-     D QDDFDFTA_DATE_TIME...
-     D                 C                   2                                    Current date/t
-     D QDDFDFTA_DFT_KEYWORD...
-     D                 C                   1                                    DFT/DFTVAL spe
+     d QDDFDFTA_GRAPHIC...
+     d                 c                   128                                  DBCS/graphic d
+     d QDDFDFTA_HEX...
+     d                 c                   32                                   Hex default.
+     d QDDFDFTA_NULL...
+     d                 c                   4                                    Null default.
+     d QDDFDFTA_DATE_TIME...
+     d                 c                   2                                    Current date/t
+     d QDDFDFTA_DFT_KEYWORD...
+     d                 c                   1                                    DFT/DFTVAL spe
       *
       *  Column Heading Information (Qdb_Qddfcolh)
-     D Qdb_Qddfcolh_t  DS                  qualified               based(pDummy)
-     D  Qddfch1                1     20A
-     D  Qddfch2               21     40A
-     D  Qddfch3               41     60A
+     d Qdb_Qddfcolh_t  ds                  qualified               based(pDummy)
+     d  Qddfch1                1     20A
+     d  Qddfch2               21     40A
+     d  Qddfch3               41     60A
       *
-      /ENDIF
+      /endif
 ]]>  </copysrc>
 </mbr>
 <sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[
@@ -2653,7 +2761,7 @@ mbrtext =  "Retrieve Field Attributes API                     "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
      /* =================================================================== */
      /*  Author  :  Thomas Raddatz                                          */
@@ -2685,7 +2793,6 @@ srccssid=  "00273">
      /*       >>PARM<<  ALWUPD(*YES);                                       */
      /*       >>PARM<<  ALWLIBUPD(*YES);                                    */
      /*       >>PARM<<  BNDSRVPGM(BASICS1);                                 */
-     /*       >>PARM<<  TGTRLS(V6R1M0);                                     */
      /*       >>PARM<<  TEXT('SrvPgm  : Retrieve Field Attributes');        */
      /*     >>END-LINK<<                                                    */
      /*                                                                     */
@@ -2721,7 +2828,7 @@ mbrtext =  "Retrieve Field Attributes - Example 1             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -2747,24 +2854,20 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)
@@ -2928,7 +3031,7 @@ mbrtext =  "Retrieve Field Attributes - Example 2             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -2954,24 +3057,20 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)
@@ -3139,7 +3238,7 @@ mbrtext =  "Retrieve Field Attributes - Example 3             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -3165,27 +3264,22 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
-     H BNDDIR('QC2LE')
      H EXTBININT(*YES)
      H DATFMT(*ISO) TIMFMT(*ISO) DEBUG(*YES)
       *=====================================================================*
@@ -3241,7 +3335,6 @@ srccssid=  "00273">
       *
      D msg             DS                  likeds(msg_t        ) inz
      D flda0100        DS                  likeds(flda0100_t   ) inz
-     D fldAttr         S                   like(flda0100       ) inz
       *
      D data            S           8196A   inz
      D pNumData        S               *   inz
@@ -3266,9 +3359,7 @@ srccssid=  "00273">
 
          // Spin through field list ...
          // ... get first field
-         isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_FIRST: fldAttr);
-
-         flda0100 = fldAttr;
+         isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_FIRST: flda0100);
 
          dow isOK;
 
@@ -3328,8 +3419,7 @@ srccssid=  "00273">
             f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
 
             // ... get next field
-            isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_NEXT: fldAttr);
-            flda0100 = fldAttr;
+            isOK = f_FldDct_rtvFldAtr(handle: cFLDDCT_FLD_NEXT: flda0100);
          enddo;
 
          // Close dictionary
@@ -3357,7 +3447,7 @@ mbrtext =  "Retrieve Field Attributes - Example 4             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -3383,24 +3473,20 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)
@@ -3573,7 +3659,7 @@ mbrtext =  "Retrieve Field Attributes - Example 5             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -3599,24 +3685,20 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)
@@ -3784,7 +3866,7 @@ mbrtext =  "Retrieve Field Attributes - Example 6             "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -3809,24 +3891,20 @@ srccssid=  "00273">
       *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
-      *                                                                     *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
-      *                                                                     *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
       *     >>END-COMPILE<<                                                 *
-      *                                                                     *
       *     >>EXECUTE<<                                                     *
-      *                                                                     *
       *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
       *                              MODULE(*PGM) +                         *
       *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
       *                              ACTGRP(*NEW) +                         *
       *                              DETAIL(*BASIC);                        *
-      *                                                                     *
       *   >>END-PRE-COMPILER<<                                              *
       *=====================================================================*
      H EXTBININT(*YES)
@@ -3954,7 +4032,7 @@ mbrtext =  "Retrieve Field Attributes API                     "
 srcfile =  "QRTVFLDA  "
 srclib  =  "selected  "
 srclen  =  "00112"
-srccssid=  "00273">
+srccssid=  "01141">
 <copysrc><![CDATA[
       *=====================================================================*
       *  Author  :  Thomas Raddatz                                          *
@@ -4050,15 +4128,17 @@ srccssid=  "00273">
       *                                                                     *
       *  03.02.2015  Th.Raddatz    Added field type LOB. (cFLDDCT_TYPE_LOB) *
       *                                                                     *
+      *  08.0142021  Th.Raddatz    Added new format FLDA0350.               *
+      *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
       *                              SRCFILE(&SL/&SF) +                     *
       *                              SRCMBR(&SM);                           *
       *     >>COMPILE<<                                                     *
+      *       >>PARM<< OPTION(*EVENTF);                                     *
       *       >>PARM<< TRUNCNBR(*NO);                                       *
       *       >>PARM<< DBGVIEW(*LIST);                                      *
-      *       >>PARM<< TGTRLS(V6R1M0);                                      *
       *     >>END-COMPILE<<                                                 *
       *     >>EXECUTE<<                                                     *
       *   >>END-PRE-COMPILER<<                                              *
@@ -4080,7 +4160,8 @@ srccssid=  "00273">
       *
       *  Handle data
      D handle_t        DS                  based(pDummy)  qualified
-     D  pointer                        *
+     D  hFild0100                      *
+     D  hFild0200                      *
      D  file                         10A
      D  lib                          10A
      D  lastFldNum                   10I 0
@@ -4089,6 +4170,14 @@ srccssid=  "00273">
       * ---------------------------------------------
       *  Prototypes of private procedures
       * ---------------------------------------------
+     D rtvFileD...
+     D                 PR              *
+     D  io_file                      10A
+     D  io_lib                       10A
+     D  i_rcdFormat                  10A   const
+     D  i_format                     10A   const
+     D  o_msg                                    likeds(msg_t)
+      *
      D f_intToExtDataType...
      D                 PR             1A
      D  i_intDataType                 2A   const
@@ -4147,96 +4236,65 @@ srccssid=  "00273">
      D cpMsg           C                   const(5)
       *
       *  Handle data
-     D handle          DS                  likeds(handle_t  )  based(pHandle)
+     D handle          DS                  likeds(handle_t)  based(pHandle)
       *
       *  Local fields
-     D isError         S               N                    inz(cFalse)
      D isBuffer        S               N                    inz(cFalse)
      D bufferSize      S             10I 0                  inz
-     D buffer          DS                  based(pBuffer  ) qualified
-     D  bytRet                       10I 0
-     D  bytAvl                       10I 0
       *
-     D msg             DS                  likeds(msg_t       ) inz
-     D errCode         DS                  likeds(errCode_t   ) inz
-     D qFile           DS                  likeds(qObj_t      ) inz
-     D qRetFile        DS                  likeds(qObj_t      ) inz
+     D msg             DS                  likeds(msg_t) inz
+     D qFile           DS                  likeds(qObj_t) inz
+     D pFild0100       S               *   inz
+     D pFild0200       S               *   inz
       * ---------------------------------------------------------
       *
       /FREE
 
          // Initialize return values
-         o_isDone  = cFalse;
-         clear   msg;
+         o_isDone = cFalse;
 
-         // Initialize helper fields
-         isError     = cFalse;
-         isBuffer    = cFalse;
+         clear qFile;
+         qFile.name = i_file;
+         qFile.lib = i_lib;
 
-         // Retrieve file description ...
-         dou   isError   or   o_isDone;
+         pFild0100 = *null;
+         pFild0200 = rtvFileD(
+                        qFile.name: qFile.lib: i_rcdFormat: 'FILD0200': msg);
 
-            // ... allocate memory
-            bufferSize = %size(buffer);
-            pBuffer    = %alloc(bufferSize);
-            isBuffer   = cTrue;
-
-            // ... determine size of memory actually needed
-            qFile.name = i_file;
-            qFile.lib  = i_lib;
-            errCode    = f_newApiErrCode(cTrue);
-            QDBRTVFD(buffer: bufferSize : qRetFile: 'FILD0200':
-                     qFile : i_rcdFormat: '0'     : '*LCL'    :
-                     '*EXT': errCode);
-            if   f_isAPIError(errCode);
-               msg = f_cvtApiErrCodeToMsg(errCode);
-               isError = cTrue;
-            else;
-
-               // ... retrieve file description
-               //     (incrementing buffer size as needed; strange API)
-               qFile = qRetFile;
-               dow   (buffer.bytAvl > buffer.bytRet)   and   not isError;
-                  bufferSize = buffer.bytAvl;
-                  pBuffer = %realloc(pBuffer: bufferSize);
-                  QDBRTVFD(Buffer : bufferSize : qRetFile: 'FILD0200':
-                           qFile  : i_rcdFormat: '0'     : '*LCL'    :
-                           '*EXT' : errCode);
-                  if   f_isAPIError(errCode);
-                     msg = f_cvtApiErrCodeToMsg(errCode);
-                     isError  = cTrue;
-                  else;
-                     clear   msg;
-                     o_isDone = cTrue;
-                  endif;
-               enddo;
-
-            endif;
-         enddo;
+         if (pFild0200 <> *null);
+            pFild0100 = rtvFileD(
+                           qFile.name: qFile.lib: i_rcdFormat: 'FILD0100': msg);
+         endif;
 
          // If the file description is available ...
-         if   o_isDone;
-         // ... then allocate handle buffer and
-         //     return the handle
+         if (pFild0200 <> *null);
+            // ... then allocate handle buffer and
+            //     return the handle
             pHandle = %alloc(%size(handle));
-            handle.Pointer    = pBuffer;
-            handle.file       = qRetFile.name;
-            handle.lib        = qRetFile.lib;
+            handle.hFild0100    = pFild0100;
+            handle.hFild0200    = pFild0200;
+            handle.file       = qFile.name;
+            handle.lib        = qFile.lib;
             handle.lastFldNum = 0;
             handle.lastFldPtr = *NULL;
             o_handle = pHandle;
+            o_isDone = cTrue;
          else;
-         // ... else deallocate buffer and
-         //     set return value to NULL
+            // ... else deallocate buffer and
+            //     set return value to NULL
             if   isBuffer;
-               dealloc(N)   pBuffer;
+               if (pFild0100 <> *null);
+                  dealloc(N) pFild0100;
+               endif;
+               dealloc(N) pFild0200;
                isBuffer   = cFalse;
                bufferSize = 0;
             endif;
             o_handle = *NULL;
+            o_isDone = cFalse;
          endif;
 
-         if   %parms >= cpMsg;
+         if (%parms >= cpMsg);
             o_msg = msg;
          endif;
 
@@ -4245,6 +4303,81 @@ srccssid=  "00273">
       /END-FREE
       *
      P f_FldDct_new...
+     P                 E
+      *
+      *==================================================================*
+      *
+      *==================================================================*
+      *
+     P rtvFileD...
+     P                 B
+     D                 PI              *
+     D  io_file                      10A
+     D  io_lib                       10A
+     D  i_rcdFormat                  10A   const
+     D  i_format                     10A   const
+     D  o_msg                                    likeds(msg_t)
+      *
+     D bufferSize      S             10I 0                  inz
+     D buffer          DS                  based(pBuffer) qualified
+     D  bytRet                       10I 0
+     D  bytAvl                       10I 0
+     D qFile           DS                  likeds(qObj_t      ) inz
+     D qRetFile        DS                  likeds(qObj_t      ) inz
+     D errCode         DS                  likeds(errCode_t) inz
+      /free
+
+         clear o_msg;
+
+         // Retrieve file description ...
+         dou '1';
+
+            // ... allocate memory
+            bufferSize = %size(buffer);
+            pBuffer    = %alloc(bufferSize);
+
+            // ... determine size of memory actually needed
+            qFile.name = io_file;
+            qFile.lib  = io_lib;
+            errCode    = f_newApiErrCode(cTrue);
+            QDBRTVFD(buffer: bufferSize : qRetFile: i_format:
+                     qFile : i_rcdFormat: '0'     : '*LCL'    :
+                     '*EXT': errCode);
+            if (f_isAPIError(errCode));
+               o_msg = f_cvtApiErrCodeToMsg(errCode);
+               leave;
+            else;
+
+               // ... retrieve file description
+               //     (incrementing buffer size as needed; strange API)
+               qFile = qRetFile;
+               dow (buffer.bytAvl > buffer.bytRet);
+                  bufferSize = buffer.bytAvl;
+                  pBuffer = %realloc(pBuffer: bufferSize);
+                  QDBRTVFD(Buffer : bufferSize : qRetFile: i_format:
+                           qFile  : i_rcdFormat: '0'     : '*LCL'    :
+                           '*EXT' : errCode);
+                  if (f_isAPIError(errCode));
+                     o_msg = f_cvtApiErrCodeToMsg(errCode);
+                     leave;
+                  else;
+                     clear o_msg;
+                     io_file = qRetFile.name;
+                     io_lib = qRetFile.lib;
+                     return pBuffer;
+                  endif;
+               enddo;
+
+            endif;
+         enddo;
+
+         if (pBuffer <> *null);
+            dealloc(N) pBuffer;
+         endif;
+
+         return *null;
+
+      /end-free
      P                 E
       *
       *==================================================================*
@@ -4270,12 +4403,16 @@ srccssid=  "00273">
          // Get access to handle data
          pHandle = io_handle;
 
-         // Free file description buffer
-         dealloc(N)   handle.Pointer;
+         // Free file description buffers
+         if (handle.hFild0100 <> *null);
+            dealloc(N) handle.hFild0100;
+         endif;
+
+         dealloc(N)   handle.hFild0200;
 
          // Initialize handle data
          clear   handle;
-         handle.Pointer  = *NULL;
+         handle.hFild0200  = *NULL;
          handle.file     = '';
          handle.lib      = '';
 
@@ -4322,6 +4459,10 @@ srccssid=  "00273">
       *  Handle
      D handle          DS                  likeds(handle_t  )  based(pHandle)
       *
+      *  File Definition Header (Qdb_Qdbfh)
+     D Qdb_Qdbfh       DS                  likeds(Qdb_Qdbfh_t )
+     D                                     based(pQdb_Qdbfh  )
+      *
       *  Format Definition Header (Qdb_Qddfmt)
      D Qdb_Qddfmt      DS                  likeds(Qdb_Qddfmt_t)
      D                                     based(pQdb_Qddfmt )
@@ -4354,6 +4495,9 @@ srccssid=  "00273">
      D Qdb_Qddfdft     DS                  likeds(Qdb_Qddfdft_t  )
      D                                     based(pQdb_Qddfdft   )
       *
+      *  Identity Column Information (Qdb_Qddfidcl)
+     D Qdb_Qddfidcl    DS                  likeds(Qdb_Qddfidcl_t )
+     D                                     based(pQdb_Qddfidcl  )
       *  Local fields
      D isFound         S               N   inz
      D isVarying       S               N   inz
@@ -4370,6 +4514,7 @@ srccssid=  "00273">
      D FLDA0320        DS                  likeds(flda0320_t)
      D FLDA0330        DS                  likeds(flda0330_t)
      D FLDA0340        DS                  likeds(flda0340_t)
+     D FLDA0350        DS                  likeds(flda0350_t)
       *
       *  String information of i_fldName
      D si_i_fldName    DS                  qualified
@@ -4406,8 +4551,11 @@ srccssid=  "00273">
          // Get access to handle data
          pHandle = i_handle;
 
+         // Get access to File Definition Template header"
+         pQdb_Qdbfh = handle.hFild0100;
+
          // Get access to "Format Definition Header"
-         pQdb_Qddfmt = handle.pointer;
+         pQdb_Qddfmt = handle.hFild0200;
 
          // Initialize helper fields
          isFound        = cFalse;
@@ -4422,7 +4570,7 @@ srccssid=  "00273">
             y = 1;
             // get access to "Field Header" of first field
             // to get entry length
-            pQdb_Qddffld = %addr(Qdb_Qddfmt) + %size(Qdb_Qddfmt);
+            pQdb_Qddffld = %addr(Qdb_Qddfmt.Qddffldx);
          endif;
 
          // Spin through the file format definition
@@ -4599,7 +4747,8 @@ srccssid=  "00273">
                  format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0200;
                FLDA0200 = FLDA0100;
 
@@ -4623,7 +4772,8 @@ srccssid=  "00273">
                  format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0300;
                FLDA0300 = FLDA0200;
 
@@ -4640,7 +4790,8 @@ srccssid=  "00273">
             if   format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0310;
                FLDA0310 = FLDA0300;
 
@@ -4658,7 +4809,8 @@ srccssid=  "00273">
             // Set additional fields of format FLDA0320
             if   format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0320;
                FLDA0320 = FLDA0310;
                FLDA0320.alias = longFldName;
@@ -4666,14 +4818,16 @@ srccssid=  "00273">
 
             // Set additional fields of format FLDA0330
             if   format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0330;
                FLDA0330 = FLDA0320;
                FLDA0330.fieldNum = Qdb_Qddfmt.Qddffldnum;
             endif;
 
             // Set additional fields of format FLDA0340
-            if   format = 'FLDA0340';
+            if   format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0340;
                FLDA0340 = FLDA0330;
                if (pQdb_Qddfdft = *NULL);
@@ -4702,6 +4856,38 @@ srccssid=  "00273">
                endif;
             endif;
 
+            // Set additional fields of format FLDA0350
+            if   format = 'FLDA0350';
+              clear FLDA0350;
+              FLDA0350 = FLDA0340;
+              if (f_isBitOn(x'0400': Qdb_Qdbfh.Qdb_Qdbfidfl)); // file: has identity column?
+                if (f_isBitOn(x'04': Qdb_Qddffld.Qddflagco)); // field: is identity column?
+                  pQdb_Qddfidcl = pQdb_Qddfmt + Qdb_Qddfmt.Qddf_Identity_Off;
+                  FLDA0350.isIdyCol = cTrue;
+                  FLDA0350.orgStrValue = Qdb_Qddfidcl.Qddf_Id_Orig_Start_With;
+                  FLDA0350.currStrValue = Qdb_Qddfidcl.Qddf_Id_Curr_Start_With;
+                  FLDA0350.incValue = Qdb_Qddfidcl.Qddf_Id_Increment_By;
+                  FLDA0350.minValue = Qdb_Qddfidcl.Qddf_Id_Minimum;
+                  FLDA0350.maxValue = Qdb_Qddfidcl.Qddf_Id_Maximum;
+                  FLDA0350.numCache = Qdb_Qddfidcl.Qddf_Id_Curr_Cache;
+                  FLDA0350.isCycling = Qdb_Qddfidcl.Qddf_Id_Cycle;
+                  FLDA0350.isOrdering = Qdb_Qddfidcl.Qddf_Id_Order;
+                else;
+                  FLDA0350.isIdyCol = cFalse;
+                  FLDA0350.orgStrValue = 0;
+                  FLDA0350.currStrValue = 0;
+                  FLDA0350.incValue = 0;
+                  FLDA0350.minValue = 0;
+                  FLDA0350.maxValue = 0;
+                  FLDA0350.numCache = 0;
+                  FLDA0350.isCycling = cFalse;
+                  FLDA0350.isOrdering = cFalse;
+                endif;
+              else;
+                FLDA0350.isIdyCol = cFalse;
+              endif;
+            endif;
+
             // Return format to caller
             select;
             when   format = 'FLDA0100';
@@ -4718,6 +4904,8 @@ srccssid=  "00273">
                %subst(o_data: 1: si_o_data.currLen) = FLDA0330;
             when   format = 'FLDA0340';
                %subst(o_data: 1: si_o_data.currLen) = FLDA0340;
+            when   format = 'FLDA0350';
+               %subst(o_data: 1: si_o_data.currLen) = FLDA0350;
             other;
                %subst(o_data: 1: si_o_data.currLen) = '';
             endsl;
@@ -4764,7 +4952,7 @@ srccssid=  "00273">
          pHandle = i_handle;
 
          // Ermöglichen Zugriff auf "Format Definition Header"
-         pQdb_Qddfmt = handle.pointer;
+         pQdb_Qddfmt = handle.hFild0200;
 
          // Ermitteln Anzahl Felder
          numEntries = Qdb_Qddfmt.Qddffldnum;

@@ -58,7 +58,8 @@
      d  Qdbfasp              204    205I 0
      d  Qdbfnbit             206    206A
      d  Qdbfmxfnum           207    208I 0
-     d  Reserved_22          209    284A
+     d  Reserved_22          209    282A
+     d  Qdb_Qdbfidfl         283    284U 0
      d  Qdbfodic             285    288I 0
      d  Reserved_23          289    302A
      d  Qdbffigl             303    304I 0
@@ -262,6 +263,8 @@
      d  Qddfdttf              94     94A
      d  Qddfdtts              95     95A
      d  Qddfcsid              96     97U 0
+      *  ...
+     d  Qddflagco            112    112U 0
       *  ...
      d  Qddfdftd             195    198U 0
       *  ...

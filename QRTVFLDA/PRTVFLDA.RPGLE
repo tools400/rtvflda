@@ -12,6 +12,7 @@
       /COPY QRTVFLDA,FDFLDA0320
       /COPY QRTVFLDA,FDFLDA0330
       /COPY QRTVFLDA,FDFLDA0340
+      /COPY QRTVFLDA,FDFLDA0350
       *
      D fldDct_handle_t...
      D                 S               *   based(pDummy)

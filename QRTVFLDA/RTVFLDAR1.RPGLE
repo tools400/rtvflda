@@ -92,6 +92,8 @@
       *                                                                     *
       *  03.02.2015  Th.Raddatz    Added field type LOB. (cFLDDCT_TYPE_LOB) *
       *                                                                     *
+      *  08.0142021  Th.Raddatz    Added new format FLDA0350.               *
+      *                                                                     *
       *=====================================================================*
       *   >>PRE-COMPILER<<                                                  *
       *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
@@ -122,7 +124,8 @@
       *
       *  Handle data
      D handle_t        DS                  based(pDummy)  qualified
-     D  pointer                        *
+     D  hFild0100                      *
+     D  hFild0200                      *
      D  file                         10A
      D  lib                          10A
      D  lastFldNum                   10I 0
@@ -131,6 +134,14 @@
       * ---------------------------------------------
       *  Prototypes of private procedures
       * ---------------------------------------------
+     D rtvFileD...
+     D                 PR              *
+     D  io_file                      10A
+     D  io_lib                       10A
+     D  i_rcdFormat                  10A   const
+     D  i_format                     10A   const
+     D  o_msg                                    likeds(msg_t)
+      *
      D f_intToExtDataType...
      D                 PR             1A
      D  i_intDataType                 2A   const
@@ -189,96 +200,65 @@
      D cpMsg           C                   const(5)
       *
       *  Handle data
-     D handle          DS                  likeds(handle_t  )  based(pHandle)
+     D handle          DS                  likeds(handle_t)  based(pHandle)
       *
       *  Local fields
-     D isError         S               N                    inz(cFalse)
      D isBuffer        S               N                    inz(cFalse)
      D bufferSize      S             10I 0                  inz
-     D buffer          DS                  based(pBuffer  ) qualified
-     D  bytRet                       10I 0
-     D  bytAvl                       10I 0
       *
-     D msg             DS                  likeds(msg_t       ) inz
-     D errCode         DS                  likeds(errCode_t   ) inz
-     D qFile           DS                  likeds(qObj_t      ) inz
-     D qRetFile        DS                  likeds(qObj_t      ) inz
+     D msg             DS                  likeds(msg_t) inz
+     D qFile           DS                  likeds(qObj_t) inz
+     D pFild0100       S               *   inz
+     D pFild0200       S               *   inz
       * ---------------------------------------------------------
       *
       /FREE
 
          // Initialize return values
-         o_isDone  = cFalse;
-         clear   msg;
+         o_isDone = cFalse;
 
-         // Initialize helper fields
-         isError     = cFalse;
-         isBuffer    = cFalse;
+         clear qFile;
+         qFile.name = i_file;
+         qFile.lib = i_lib;
 
-         // Retrieve file description ...
-         dou   isError   or   o_isDone;
+         pFild0100 = *null;
+         pFild0200 = rtvFileD(
+                        qFile.name: qFile.lib: i_rcdFormat: 'FILD0200': msg);
 
-            // ... allocate memory
-            bufferSize = %size(buffer);
-            pBuffer    = %alloc(bufferSize);
-            isBuffer   = cTrue;
-
-            // ... determine size of memory actually needed
-            qFile.name = i_file;
-            qFile.lib  = i_lib;
-            errCode    = f_newApiErrCode(cTrue);
-            QDBRTVFD(buffer: bufferSize : qRetFile: 'FILD0200':
-                     qFile : i_rcdFormat: '0'     : '*LCL'    :
-                     '*EXT': errCode);
-            if   f_isAPIError(errCode);
-               msg = f_cvtApiErrCodeToMsg(errCode);
-               isError = cTrue;
-            else;
-
-               // ... retrieve file description
-               //     (incrementing buffer size as needed; strange API)
-               qFile = qRetFile;
-               dow   (buffer.bytAvl > buffer.bytRet)   and   not isError;
-                  bufferSize = buffer.bytAvl;
-                  pBuffer = %realloc(pBuffer: bufferSize);
-                  QDBRTVFD(Buffer : bufferSize : qRetFile: 'FILD0200':
-                           qFile  : i_rcdFormat: '0'     : '*LCL'    :
-                           '*EXT' : errCode);
-                  if   f_isAPIError(errCode);
-                     msg = f_cvtApiErrCodeToMsg(errCode);
-                     isError  = cTrue;
-                  else;
-                     clear   msg;
-                     o_isDone = cTrue;
-                  endif;
-               enddo;
-
-            endif;
-         enddo;
+         if (pFild0200 <> *null);
+            pFild0100 = rtvFileD(
+                           qFile.name: qFile.lib: i_rcdFormat: 'FILD0100': msg);
+         endif;
 
          // If the file description is available ...
-         if   o_isDone;
-         // ... then allocate handle buffer and
-         //     return the handle
+         if (pFild0200 <> *null);
+            // ... then allocate handle buffer and
+            //     return the handle
             pHandle = %alloc(%size(handle));
-            handle.Pointer    = pBuffer;
-            handle.file       = qRetFile.name;
-            handle.lib        = qRetFile.lib;
+            handle.hFild0100    = pFild0100;
+            handle.hFild0200    = pFild0200;
+            handle.file       = qFile.name;
+            handle.lib        = qFile.lib;
             handle.lastFldNum = 0;
             handle.lastFldPtr = *NULL;
             o_handle = pHandle;
+            o_isDone = cTrue;
          else;
-         // ... else deallocate buffer and
-         //     set return value to NULL
+            // ... else deallocate buffer and
+            //     set return value to NULL
             if   isBuffer;
-               dealloc(N)   pBuffer;
+               if (pFild0100 <> *null);
+                  dealloc(N) pFild0100;
+               endif;
+               dealloc(N) pFild0200;
                isBuffer   = cFalse;
                bufferSize = 0;
             endif;
             o_handle = *NULL;
+            o_isDone = cFalse;
          endif;
 
-         if   %parms >= cpMsg;
+         if (%parms >= cpMsg);
             o_msg = msg;
          endif;
 
@@ -287,6 +267,81 @@
       /END-FREE
       *
      P f_FldDct_new...
+     P                 E
+      *
+      *==================================================================*
+      *
+      *==================================================================*
+      *
+     P rtvFileD...
+     P                 B
+     D                 PI              *
+     D  io_file                      10A
+     D  io_lib                       10A
+     D  i_rcdFormat                  10A   const
+     D  i_format                     10A   const
+     D  o_msg                                    likeds(msg_t)
+      *
+     D bufferSize      S             10I 0                  inz
+     D buffer          DS                  based(pBuffer) qualified
+     D  bytRet                       10I 0
+     D  bytAvl                       10I 0
+     D qFile           DS                  likeds(qObj_t      ) inz
+     D qRetFile        DS                  likeds(qObj_t      ) inz
+     D errCode         DS                  likeds(errCode_t) inz
+      /free
+
+         clear o_msg;
+
+         // Retrieve file description ...
+         dou '1';
+
+            // ... allocate memory
+            bufferSize = %size(buffer);
+            pBuffer    = %alloc(bufferSize);
+
+            // ... determine size of memory actually needed
+            qFile.name = io_file;
+            qFile.lib  = io_lib;
+            errCode    = f_newApiErrCode(cTrue);
+            QDBRTVFD(buffer: bufferSize : qRetFile: i_format:
+                     qFile : i_rcdFormat: '0'     : '*LCL'    :
+                     '*EXT': errCode);
+            if (f_isAPIError(errCode));
+               o_msg = f_cvtApiErrCodeToMsg(errCode);
+               leave;
+            else;
+
+               // ... retrieve file description
+               //     (incrementing buffer size as needed; strange API)
+               qFile = qRetFile;
+               dow (buffer.bytAvl > buffer.bytRet);
+                  bufferSize = buffer.bytAvl;
+                  pBuffer = %realloc(pBuffer: bufferSize);
+                  QDBRTVFD(Buffer : bufferSize : qRetFile: i_format:
+                           qFile  : i_rcdFormat: '0'     : '*LCL'    :
+                           '*EXT' : errCode);
+                  if (f_isAPIError(errCode));
+                     o_msg = f_cvtApiErrCodeToMsg(errCode);
+                     leave;
+                  else;
+                     clear o_msg;
+                     io_file = qRetFile.name;
+                     io_lib = qRetFile.lib;
+                     return pBuffer;
+                  endif;
+               enddo;
+
+            endif;
+         enddo;
+
+         if (pBuffer <> *null);
+            dealloc(N) pBuffer;
+         endif;
+
+         return *null;
+
+      /end-free
      P                 E
       *
       *==================================================================*
@@ -312,12 +367,16 @@
          // Get access to handle data
          pHandle = io_handle;
 
-         // Free file description buffer
-         dealloc(N)   handle.Pointer;
+         // Free file description buffers
+         if (handle.hFild0100 <> *null);
+            dealloc(N) handle.hFild0100;
+         endif;
+
+         dealloc(N)   handle.hFild0200;
 
          // Initialize handle data
          clear   handle;
-         handle.Pointer  = *NULL;
+         handle.hFild0200  = *NULL;
          handle.file     = '';
          handle.lib      = '';
 
@@ -364,6 +423,10 @@
       *  Handle
      D handle          DS                  likeds(handle_t  )  based(pHandle)
       *
+      *  File Definition Header (Qdb_Qdbfh)
+     D Qdb_Qdbfh       DS                  likeds(Qdb_Qdbfh_t )
+     D                                     based(pQdb_Qdbfh  )
+      *
       *  Format Definition Header (Qdb_Qddfmt)
      D Qdb_Qddfmt      DS                  likeds(Qdb_Qddfmt_t)
      D                                     based(pQdb_Qddfmt )
@@ -396,6 +459,9 @@
      D Qdb_Qddfdft     DS                  likeds(Qdb_Qddfdft_t  )
      D                                     based(pQdb_Qddfdft   )
       *
+      *  Identity Column Information (Qdb_Qddfidcl)
+     D Qdb_Qddfidcl    DS                  likeds(Qdb_Qddfidcl_t )
+     D                                     based(pQdb_Qddfidcl  )
       *  Local fields
      D isFound         S               N   inz
      D isVarying       S               N   inz
@@ -412,6 +478,7 @@
      D FLDA0320        DS                  likeds(flda0320_t)
      D FLDA0330        DS                  likeds(flda0330_t)
      D FLDA0340        DS                  likeds(flda0340_t)
+     D FLDA0350        DS                  likeds(flda0350_t)
       *
       *  String information of i_fldName
      D si_i_fldName    DS                  qualified
@@ -448,8 +515,11 @@
          // Get access to handle data
          pHandle = i_handle;
 
+         // Get access to File Definition Template header"
+         pQdb_Qdbfh = handle.hFild0100;
+
          // Get access to "Format Definition Header"
-         pQdb_Qddfmt = handle.pointer;
+         pQdb_Qddfmt = handle.hFild0200;
 
          // Initialize helper fields
          isFound        = cFalse;
@@ -464,7 +534,7 @@
             y = 1;
             // get access to "Field Header" of first field
             // to get entry length
-            pQdb_Qddffld = %addr(Qdb_Qddfmt) + %size(Qdb_Qddfmt);
+            pQdb_Qddffld = %addr(Qdb_Qddfmt.Qddffldx);
          endif;
 
          // Spin through the file format definition
@@ -641,7 +711,8 @@
                  format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0200;
                FLDA0200 = FLDA0100;
 
@@ -665,7 +736,8 @@
                  format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0300;
                FLDA0300 = FLDA0200;
 
@@ -682,7 +754,8 @@
             if   format = 'FLDA0310' or
                  format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0310;
                FLDA0310 = FLDA0300;
 
@@ -700,7 +773,8 @@
             // Set additional fields of format FLDA0320
             if   format = 'FLDA0320' or
                  format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0320;
                FLDA0320 = FLDA0310;
                FLDA0320.alias = longFldName;
@@ -708,14 +782,16 @@
 
             // Set additional fields of format FLDA0330
             if   format = 'FLDA0330' or
-                 format = 'FLDA0340';
+                 format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0330;
                FLDA0330 = FLDA0320;
                FLDA0330.fieldNum = Qdb_Qddfmt.Qddffldnum;
             endif;
 
             // Set additional fields of format FLDA0340
-            if   format = 'FLDA0340';
+            if   format = 'FLDA0340' or
+                 format = 'FLDA0350';
                clear   FLDA0340;
                FLDA0340 = FLDA0330;
                if (pQdb_Qddfdft = *NULL);
@@ -744,6 +820,38 @@
                endif;
             endif;
 
+            // Set additional fields of format FLDA0350
+            if   format = 'FLDA0350';
+              clear FLDA0350;
+              FLDA0350 = FLDA0340;
+              if (f_isBitOn(x'0400': Qdb_Qdbfh.Qdb_Qdbfidfl)); // file: has identity column?
+                if (f_isBitOn(x'04': Qdb_Qddffld.Qddflagco)); // field: is identity column?
+                  pQdb_Qddfidcl = pQdb_Qddfmt + Qdb_Qddfmt.Qddf_Identity_Off;
+                  FLDA0350.isIdyCol = cTrue;
+                  FLDA0350.orgStrValue = Qdb_Qddfidcl.Qddf_Id_Orig_Start_With;
+                  FLDA0350.currStrValue = Qdb_Qddfidcl.Qddf_Id_Curr_Start_With;
+                  FLDA0350.incValue = Qdb_Qddfidcl.Qddf_Id_Increment_By;
+                  FLDA0350.minValue = Qdb_Qddfidcl.Qddf_Id_Minimum;
+                  FLDA0350.maxValue = Qdb_Qddfidcl.Qddf_Id_Maximum;
+                  FLDA0350.numCache = Qdb_Qddfidcl.Qddf_Id_Curr_Cache;
+                  FLDA0350.isCycling = Qdb_Qddfidcl.Qddf_Id_Cycle;
+                  FLDA0350.isOrdering = Qdb_Qddfidcl.Qddf_Id_Order;
+                else;
+                  FLDA0350.isIdyCol = cFalse;
+                  FLDA0350.orgStrValue = 0;
+                  FLDA0350.currStrValue = 0;
+                  FLDA0350.incValue = 0;
+                  FLDA0350.minValue = 0;
+                  FLDA0350.maxValue = 0;
+                  FLDA0350.numCache = 0;
+                  FLDA0350.isCycling = cFalse;
+                  FLDA0350.isOrdering = cFalse;
+                endif;
+              else;
+                FLDA0350.isIdyCol = cFalse;
+              endif;
+            endif;
+
             // Return format to caller
             select;
             when   format = 'FLDA0100';
@@ -760,6 +868,8 @@
                %subst(o_data: 1: si_o_data.currLen) = FLDA0330;
             when   format = 'FLDA0340';
                %subst(o_data: 1: si_o_data.currLen) = FLDA0340;
+            when   format = 'FLDA0350';
+               %subst(o_data: 1: si_o_data.currLen) = FLDA0350;
             other;
                %subst(o_data: 1: si_o_data.currLen) = '';
             endsl;
@@ -806,7 +916,7 @@
          pHandle = i_handle;
 
          // Ermöglichen Zugriff auf "Format Definition Header"
-         pQdb_Qddfmt = handle.pointer;
+         pQdb_Qddfmt = handle.hFild0200;
 
          // Ermitteln Anzahl Felder
          numEntries = Qdb_Qddfmt.Qddffldnum;
