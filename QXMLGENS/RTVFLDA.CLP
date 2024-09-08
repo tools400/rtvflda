@@ -79,6 +79,11 @@
                           XTOSRCF(QRTVFLDA  ) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
+             XMLGENMBR  XMBR(FDFLDA0350) XMBRATR(RPGLE) +
+                          XFROMSRCF(QRTVFLDA  ) XFROMSRCL(TOOLS400) +
+                          XTOSRCF(QRTVFLDA  ) XOBJTYPE(*PGM   ) +
+                          XGENCRT(*NO ) XPARAM(*BLANK)
+
              XMLGENMBR  XMBR(PRTVFLDA  ) XMBRATR(RPGLE) +
                           XFROMSRCF(QRTVFLDA  ) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QRTVFLDA  ) XOBJTYPE(*PGM   ) +
