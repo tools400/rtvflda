@@ -29,7 +29,7 @@
 //    *NoDebugIO     - Do not generate breakpoints for input and
 //                     output specifications. Optional but useful.
 //=====================================================================
-ctl-opt NoMain Option(*SrcStmt : *NoDebugIO);
+ctl-opt nomain option(*srcstmt: *nodebugio);
 dcl-f QSYSPRT printer(80) oflind(*in70) usropn;
 
 /include qinclude,TESTCASE                  iRPGUnit Test Suite
@@ -61,9 +61,9 @@ end-ds;
 // ------------------------------------------------------------
 
 dcl-ds g_status qualified;
-  srcSeq int(10);
+  srcSeq  int(10);
   srcSeq2 int(10);
-  sql likeds(sql_status_t) inz(*likeds);
+  sql     likeds(sql_status_t) inz(*likeds);
 end-ds;
 
 // ============================================================
@@ -81,7 +81,7 @@ end-proc;
 // ============================================================
 dcl-proc print;
   dcl-pi *n extproc(*dclcase);
-    text varchar(128) value options(*nopass);
+    text varchar(128) options(*nopass) value;
   end-pi;
 
   dcl-ds lineOutput len(80);
@@ -159,11 +159,11 @@ end-proc;
 // ------------------------------------------------------------
 dcl-proc isSQLError;
   dcl-pi *n ind extproc(*dclcase);
-    i_state   char(5) const;
+    i_state char(5) const;
   end-pi;
 
   dcl-ds sqlState qualified;
-    class char(2);
+    class     char(2);
     qualifier char(3);
   end-ds;
 
@@ -203,49 +203,49 @@ dcl-proc isSQLError;
 end-proc;
 
 // ------------------------------------------------------------
-//  Returns *ON, when the specified object exists, eöse *OFF.
+//  Returns *ON, when the specified object exists, ese *OFF.
 // ------------------------------------------------------------
 dcl-proc exist;
   dcl-pi *n ind extproc(*dclcase);
-    i_lib varchar(10) const;
-    i_obj varchar(10) const;
+    i_lib  varchar(10) const;
+    i_obj  varchar(10) const;
     i_type varchar(10) const;
-    i_mbr varchar(10) options(*nopass: *omit) const;
+    i_mbr  varchar(10) options(*nopass: *omit) const;
   end-pi;
 
   // Retrieve Object Description (QUSROBJD) API
   dcl-pr QUSROBJD extpgm('QUSROBJD');
-    o_rcvVar     char(65535) options(*varsize);
-    i_lenRcvVar  int(10)     const;
-    i_format     char(8)     const;
-    i_qObj       char(20)    const;
-    i_type       char(10)    const;
-    io_errCode   char(65535) options(*nopass: *varsize);
+    o_rcvVar    char(65535) options(*varsize);
+    i_lenRcvVar int(10) const;
+    i_format    char(8) const;
+    i_qObj      char(20) const;
+    i_type      char(10) const;
+    io_errCode  char(65535) options(*nopass: *varsize);
   end-pr;
 
   dcl-ds objd0100 qualified;
-    bytRet       int(10);
-    bytAvl       int(10);
-    name         char(10);
-    lib          char(10);
-    type         char(10);
-    rtnLib       char(10);
-    auxStgP      int(10);
-    owner        char(10);
-    domain       char(2);
-    crtDatTim    char(13);
-    chgDatTim    char(13);
+    bytRet    int(10);
+    bytAvl    int(10);
+    name      char(10);
+    lib       char(10);
+    type      char(10);
+    rtnLib    char(10);
+    auxStgP   int(10);
+    owner     char(10);
+    domain    char(2);
+    crtDatTim char(13);
+    chgDatTim char(13);
   end-ds;
 
   // Retrieve Member Description (QUSRMBRD) API
   dcl-pr QUSRMBRD extpgm('QUSRMBRD');
-    o_rcvVar     char(65535) options(*varsize);
-    i_lenRcvVar  int(10)     const;
-    i_format     char(8)     const;
-    i_qFile      char(20)    const;
-    i_mbr        char(10)    const;
-    i_ovrPrc     char(1)     const;
-    io_errCode   char(65535) options(*nopass: *varsize);
+    o_rcvVar    char(65535) options(*varsize);
+    i_lenRcvVar int(10) const;
+    i_format    char(8) const;
+    i_qFile     char(20) const;
+    i_mbr       char(10) const;
+    i_ovrPrc    char(1) const;
+    io_errCode  char(65535) options(*nopass: *varsize);
   end-pr;
 
   dcl-ds mbrd0100 qualified;
@@ -265,8 +265,8 @@ dcl-proc exist;
   dcl-ds errCode likeds(errCode_t) inz;
 
   dcl-ds qObj qualified;
-    name         char(10);
-    lib          char(10);
+    name char(10);
+    lib  char(10);
   end-ds;
 
   clear qObj;

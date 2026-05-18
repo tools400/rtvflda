@@ -1,9 +1,8 @@
-      /if not defined(COPYRIGHT_DSPEC)
-     h COPYRIGHT('V1.10 - 08.09.2024 - mailto: thomas.raddatz@tools400.de')
-      /eof
-      /endif
-     d RTVFLDA_VERSION...
-     d                 C                   '1.10'
-     d RTVFLDA_DATE...
-     d                 C                   '08.09.2024'
-      *
+**free
+/if not defined(COPYRIGHT_DSPEC)
+ctl-opt copyright('V1.11 - 18.05.2026 - mailto: thomas.raddatz@tools400.de');
+/eof
+/endif
+dcl-c RTVFLDA_VERSION '1.11';
+dcl-c RTVFLDA_DATE '18.05.2026';
+

@@ -1,72 +1,73 @@
-      /IF NOT DEFINED(flda0330_t)
-      /DEFINE flda0330_t
-      *===============================================================*
-      *  QDBRTVFD API - FLDA0330                                      *
-      * ============================================================= *
-     D flda0330_t...
-     D                 DS                   qualified
-      * File name
-     D  file                         10A
-      * Library name
-     D  lib                          10A
-      * Field name
-     D  name                         10A
-      * Data type
-     D  type                          1A
-      * Use
-     D  use                           1A
-      * Output buffer position
-     D  outBufPos                    10I 0
-      * Input buffer position
-     D  inBufPos                     10I 0
-      * Field length in bytes
-     D  length                       10I 0
-      * Digits
-     D  digits                       10I 0
-      * Decimal position
-     D  decPos                       10I 0
-      * Field text description
-     D  text                         50A
-      * Edit code
-     D  edtC                          2A
-      * Edit word length
-     D  edtWLen                       9B 0
-      * Edit word
-     D  edtW                         64A
-      * Column heading 1
-     D  colHdg1                      20A
-      * Column heading 2
-     D  colHdg2                      20A
-      * Column heading 3
-     D  colHdg3                      20A
-      * Date and time format
-     D  datTimFmt                     4A
-      * Date and time separator
-     D  datTimSep                     1A
-      *
-      *  Additional fields of format FLDA0200
-      * Reference file name
-     D  refFile                      10A
-      * Reference library name
-     D  refLib                       10A
-      * Reference record format name
-     D  refFmt                       10A
-      * Reference field name
-     D  refFld                       10A
-      *
-      *  Additional fields of format FLDA0300
-     D  alwNull                        N
-     D  ccsid                        10U 0
-      *
-      *  Additional fields of format FLDA0310
-     D  varLength                      N
-     D  buffLength                   10I 0
-     D  alcLength                    10I 0
-      *
-      *  Additional fields of format FLDA0320
-     D  alias                       258A   varying
-      *
-      *  Additional fields of format FLDA0330
-     D  fieldNum                     10I 0
-      *
-      /ENDIF
+**free
+/if NOT DEFINED(flda0330_t)
+/define flda0330_t
+//===============================================================*
+//  QDBRTVFD API - FLDA0330                                      *
+// ============================================================= *
+dcl-ds flda0330_t qualified;
+  // File name
+  file       char(10);
+  // Library name
+  lib        char(10);
+  // Field name
+  name       char(10);
+  // Data type
+  type       char(1);
+  // Use
+  use        char(1);
+  // Output buffer position
+  outBufPos  int(10);
+  // Input buffer position
+  inBufPos   int(10);
+  // Field length in bytes
+  length     int(10);
+  // Digits
+  digits     int(10);
+  // Decimal position
+  decPos     int(10);
+  // Field text description
+  text       char(50);
+  // Edit code
+  edtC       char(2);
+  // Edit word length
+  edtWLen    bindec(9);
+  // Edit word
+  edtW       char(64);
+  // Column heading 1
+  colHdg1    char(20);
+  // Column heading 2
+  colHdg2    char(20);
+  // Column heading 3
+  colHdg3    char(20);
+  // Date and time format
+  datTimFmt  char(4);
+  // Date and time separator
+  datTimSep  char(1);
+
+  //  Additional fields of format FLDA0200
+  // Reference file name
+  refFile    char(10);
+  // Reference library name
+  refLib     char(10);
+  // Reference record format name
+  refFmt     char(10);
+  // Reference field name
+  refFld     char(10);
+
+  //  Additional fields of format FLDA0300
+  alwNull    ind;
+  ccsid      uns(10);
+
+  //  Additional fields of format FLDA0310
+  varLength  ind;
+  buffLength int(10);
+  alcLength  int(10);
+
+  //  Additional fields of format FLDA0320
+  alias      varchar(258);
+
+  //  Additional fields of format FLDA0330
+  fieldNum   int(10);
+end-ds;
+
+/endif

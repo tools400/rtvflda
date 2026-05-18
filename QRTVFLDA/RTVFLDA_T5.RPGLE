@@ -1,192 +1,188 @@
-      *=====================================================================*
-      *  Author  :  Thomas Raddatz                                          *
-      *  Date    :  25.09.2002                                              *
-      *  E-mail  :  thomas.raddatz@tools400.de                              *
-      *  Homepage:  www.tools400.de                                         *
-      *=====================================================================*
-      *                                                                     *
-      *  This software is free software, you can redistribute it and/or     *
-      *  modify it under the terms of the GNU General Public License (GPL)  *
-      *  as published by the Free Software Foundation.                      *
-      *                                                                     *
-      *  See GNU General Public License for details.                        *
-      *          http://www.opensource.org                                  *
-      *          http://www.opensource.org/licenses/gpl-license.html        *
-      *                                                                     *
-      *=====================================================================*
-      *  History:                                                           *
-      *                                                                     *
-      *  Datum       Name          Änderung                                 *
-      *  ----------  ------------  ---------------------------------------  *
-      *  15.06.2012  Th.Raddatz    Changed program to /FREE.                *
-      *                                                                     *
-      *=====================================================================*
-      *   >>PRE-COMPILER<<                                                  *
-      *     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
-      *                              SRCFILE(&SL/&SF) +                     *
-      *                              SRCMBR(&SM);                           *
-      *     >>COMPILE<<                                                     *
-      *       >>PARM<< OPTION(*EVENTF);                                     *
-      *       >>PARM<< TRUNCNBR(*NO);                                       *
-      *       >>PARM<< DBGVIEW(*LIST);                                      *
-      *     >>END-COMPILE<<                                                 *
-      *     >>EXECUTE<<                                                     *
-      *     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
-      *                              MODULE(*PGM) +                         *
-      *                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
-      *                              ACTGRP(*NEW) +                         *
-      *                              DETAIL(*BASIC);                        *
-      *   >>END-PRE-COMPILER<<                                              *
-      *=====================================================================*
-     H EXTBININT(*YES)
-     H DATFMT(*ISO) TIMFMT(*ISO) DEBUG(*YES)
-      *=====================================================================*
-      *
-      /COPY QRTVFLDA,PRTVFLDA
-      *
-      *  *ENTRY list
-     D RTVFLDA_T...
-     D                 PR                  extpgm('RTVFLDA_T5')
-     D  gi_file                      10A   const
-     D  gi_fldName                   10A   const
-      *
-      *  Internal prototypes
-     D main...
-     D                 PR
-     D  i_file                       10A   const
-     D  i_fldName                    10A   const
-      *
-      ********************************************************************
-      *  Program Entry Point
-      ********************************************************************
-      *
-     D RTVFLDA_T...
-     D                 PI
-     D  gi_file                      10A   const
-     D  gi_fldName                   10A   const
-      *-------------------------------------------------------------------
-      /FREE
-         main(gi_file: gi_fldName);
+**free
+//=====================================================================*
+//  Author  :  Thomas Raddatz                                          *
+//  Date    :  25.09.2002                                              *
+//  E-mail  :  thomas.raddatz@tools400.de                              *
+//  Homepage:  www.tools400.de                                         *
+//=====================================================================*
+//                                                                     *
+//  This software is free software, you can redistribute it and/or     *
+//  modify it under the terms of the GNU General Public License (GPL)  *
+//  as published by the Free Software Foundation.                      *
+//                                                                     *
+//  See GNU General Public License for details.                        *
+//          http://www.opensource.org                                  *
+//          http://www.opensource.org/licenses/gpl-license.html        *
+//                                                                     *
+//=====================================================================*
+//  History:                                                           *
+//                                                                     *
+//  Datum       Name          nderung                                 *
+//  ----------  ------------  ---------------------------------------  *
+//  15.06.2012  Th.Raddatz    Changed program to /FREE.                *
+//                                                                     *
+//=====================================================================*
+//   >>PRE-COMPILER<<                                                  *
+//     >>CRTCMD<<  CRTRPGMOD    MODULE(&LI/&OB) +                      *
+//                              SRCFILE(&SL/&SF) +                     *
+//                              SRCMBR(&SM);                           *
+//     >>COMPILE<<                                                     *
+//       >>PARM<< OPTION(*EVENTF);                                     *
+//       >>PARM<< TRUNCNBR(*NO);                                       *
+//       >>PARM<< DBGVIEW(*LIST);                                      *
+//     >>END-COMPILE<<                                                 *
+//     >>EXECUTE<<                                                     *
+//     >>CMD<<     CRTPGM       PGM(&LI/&OB) +                         *
+//                              MODULE(*PGM) +                         *
+//                              BNDSRVPGM(&LI/RTVFLDA BASICS1) +       *
+//                              ACTGRP(*NEW) +                         *
+//                              DETAIL(*BASIC);                        *
+//   >>END-PRE-COMPILER<<                                              *
+//=====================================================================*
+ctl-opt extbinint(*yes);
+ctl-opt datfmt(*iso) timfmt(*iso) debug(*yes);
+//=====================================================================*
 
-         *inlr = *ON;
+/copy QRTVFLDA,PRTVFLDA
 
-      /END-FREE
-      *
-      *==================================================================*
-      *  Main procedure
-      *==================================================================*
-     P main...
-     P                 B                   export
-     D                 PI
-     D  i_file                       10A   const
-     D  i_fldName                    10A   const
-      *
-      *  Local fields
-     D isOK            S               N   inz
-     D handle          S                   like(fldDct_handle_t) inz
-      *
-     D msg             DS                  likeds(msg_t        ) inz
-     D errMsg          DS                  likeds(msg_t        ) inz
-     D flda0310        DS                  likeds(flda0310_t   ) inz
-      *-------------------------------------------------------------------
-      /FREE
+//  *ENTRY list
+dcl-pr RTVFLDA_T extpgm('RTVFLDA_T5');
+  gi_file    char(10) const;
+  gi_fldName char(10) const;
+end-pr;
 
-         errMsg = f_newMsg(cMSG_ID_OK);
+//  Internal prototypes
+dcl-pr main;
+  i_file    char(10) const;
+  i_fldName char(10) const;
+end-pr;
 
-         dou '1';
+//*******************************************************************
+//  Program Entry Point
+//*******************************************************************
+dcl-pi RTVFLDA_T;
+  gi_file    char(10) const;
+  gi_fldName char(10) const;
+end-pi;
+//-------------------------------------------------------------------
+main(gi_file: gi_fldName);
 
-            // Open dictionary
-            isOK = f_fldDct_new(i_file: '*LIBL': '*FIRST': handle: msg);
+*inlr = *ON;
 
-            // Get attributes of i_fldName
-            isOK = f_FldDct_rtvFldAtr(handle: i_fldName: flda0310: 'flda0310');
-            if (isOK);
-               msg = f_newMsg('CPF9897'
-                              : 'Field ' + %trim(flda0310.name) +
-                                ', VARCHAR is ' + FLDA0310.VARLENGTH);
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            else;
-               errMsg = f_newMsg('CPF9898'
-                              : 'Field not found'
-                              : cMSG_ESCAPE);
-               leave;
-            endif;
 
-            // Get attributes of previous field
-            isOK = f_FldDct_rtvFldAtr(
-                            handle: cFLDDCT_FLD_PREV: flda0310: 'FLDA0310');
-            if (isOK);
-               msg = f_newMsg('CPF9897'
-                              : 'Previous field ' + %trim(flda0310.name) +
-                                ', VARCHAR is ' + FLDA0310.VARLENGTH);
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            else;
-               msg = f_newMsg('CPF9897'
-                              : i_fldName +
-                                ' is the first field of the record.');
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            endif;
+//==================================================================*
+//  Main procedure
+//==================================================================*
+dcl-proc main export;
+  dcl-pi *n;
+    i_file    char(10) const;
+    i_fldName char(10) const;
+  end-pi;
 
-            // Position back to i_fldName
-            isOK = f_FldDct_rtvFldAtr(handle: i_fldName: flda0310: 'FLDA0310');
+  //  Local fields
+  dcl-s isOK ind inz;
+  dcl-s handle like(fldDct_handle_t) inz;
 
-            // Get attributes of next field
-            isOK = f_FldDct_rtvFldAtr(
-                            handle: cFLDDCT_FLD_NEXT: flda0310: 'FLDA0310');
-            if (isOK);
-               msg = f_newMsg('CPF9897'
-                              : 'Next field ' + %trim(flda0310.name) +
-                                ', VARCHAR is ' + FLDA0310.VARLENGTH);
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            else;
-               msg = f_newMsg('CPF9897'
-                              : i_fldName +
-                                ' is the last field of the record.');
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            endif;
+  dcl-ds msg likeds(msg_t) inz;
+  dcl-ds errMsg likeds(msg_t) inz;
+  dcl-ds flda0310 likeds(flda0310_t) inz;
+  //-------------------------------------------------------------------
 
-            // Get attributes of first field of record
-            isOK = f_FldDct_rtvFldAtr(
-                            handle: cFLDDCT_FLD_FIRST: flda0310: 'FLDA0310');
-            if (isOK);
-               msg = f_newMsg('CPF9897'
-                              : 'First field ' + %trim(flda0310.name) +
-                                ', VARCHAR is ' + FLDA0310.VARLENGTH);
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            else;
-               msg = f_newMsg('CPF9898'
-                              : 'Failed retrieving attributes of first field'
-                              : cMSG_ESCAPE);
-               leave;
-            endif;
+  errMsg = f_newMsg(cMSG_ID_OK);
 
-            // Get attributes of last field of record
-            isOK = f_FldDct_rtvFldAtr(
-                            handle: cFLDDCT_FLD_LAST: flda0310: 'FLDA0310');
-            if (isOK);
-               msg = f_newMsg('CPF9897'
-                              : 'Last field ' + %trim(flda0310.name) +
-                                ', VARCHAR is ' + FLDA0310.VARLENGTH);
-               f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
-            else;
-               msg = f_newMsg('CPF9898'
-                              : 'Failed retrieving attributes of last field'
-                              : cMSG_ESCAPE);
-               leave;
-            endif;
+  dou '1';
 
-         enddo;
+    // Open dictionary
+    isOK = f_fldDct_new(i_file: '*LIBL': '*FIRST': handle: msg);
 
-         // Close dictionary
-         isOK = f_FldDct_delete(handle);
+    // Get attributes of i_fldName
+    isOK = f_FldDct_rtvFldAtr(handle: i_fldName: flda0310: 'flda0310');
+    if (isOK);
+      msg = f_newMsg('CPF9897'
+                     : 'Field ' + %trim(flda0310.name) +
+                       ', VARCHAR is ' + FLDA0310.VARLENGTH);
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    else;
+      errMsg = f_newMsg('CPF9898'
+                     : 'Field not found'
+                     : cMSG_ESCAPE);
+      leave;
+    endif;
 
-         if (errMsg.ID <> cMSG_ID_OK);
-            f_sndPgmMsg(errMsg: cMsg_Prv: cMsg_ToCtlBdy);
-         endif;
+    // Get attributes of previous field
+    isOK = f_FldDct_rtvFldAtr(
+                    handle: cFLDDCT_FLD_PREV: flda0310: 'FLDA0310');
+    if (isOK);
+      msg = f_newMsg('CPF9897'
+                     : 'Previous field ' + %trim(flda0310.name) +
+                       ', VARCHAR is ' + FLDA0310.VARLENGTH);
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    else;
+      msg = f_newMsg('CPF9897'
+                     : i_fldName +
+                       ' is the first field of the record.');
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    endif;
 
-         return;
+    // Position back to i_fldName
+    isOK = f_FldDct_rtvFldAtr(handle: i_fldName: flda0310: 'FLDA0310');
 
-      /END-FREE
-      *
-     P                 E
-      *
+    // Get attributes of next field
+    isOK = f_FldDct_rtvFldAtr(
+                    handle: cFLDDCT_FLD_NEXT: flda0310: 'FLDA0310');
+    if (isOK);
+      msg = f_newMsg('CPF9897'
+                     : 'Next field ' + %trim(flda0310.name) +
+                       ', VARCHAR is ' + FLDA0310.VARLENGTH);
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    else;
+      msg = f_newMsg('CPF9897'
+                     : i_fldName +
+                       ' is the last field of the record.');
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    endif;
+
+    // Get attributes of first field of record
+    isOK = f_FldDct_rtvFldAtr(
+                    handle: cFLDDCT_FLD_FIRST: flda0310: 'FLDA0310');
+    if (isOK);
+      msg = f_newMsg('CPF9897'
+                     : 'First field ' + %trim(flda0310.name) +
+                       ', VARCHAR is ' + FLDA0310.VARLENGTH);
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    else;
+      msg = f_newMsg('CPF9898'
+                     : 'Failed retrieving attributes of first field'
+                     : cMSG_ESCAPE);
+      leave;
+    endif;
+
+    // Get attributes of last field of record
+    isOK = f_FldDct_rtvFldAtr(
+                    handle: cFLDDCT_FLD_LAST: flda0310: 'FLDA0310');
+    if (isOK);
+      msg = f_newMsg('CPF9897'
+                     : 'Last field ' + %trim(flda0310.name) +
+                       ', VARCHAR is ' + FLDA0310.VARLENGTH);
+      f_sndPgmMsg(msg: cMsg_Prv: cMsg_ToCtlBdy);
+    else;
+      msg = f_newMsg('CPF9898'
+                     : 'Failed retrieving attributes of last field'
+                     : cMSG_ESCAPE);
+      leave;
+    endif;
+
+  enddo;
+
+  // Close dictionary
+  isOK = f_FldDct_delete(handle);
+
+  if (errMsg.ID <> cMSG_ID_OK);
+    f_sndPgmMsg(errMsg: cMsg_Prv: cMsg_ToCtlBdy);
+  endif;
+
+  return;
+
+
+end-proc;
+

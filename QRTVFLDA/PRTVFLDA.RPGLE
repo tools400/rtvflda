@@ -1,226 +1,154 @@
-      *=====================================================================*
-      *  Author  :  Thomas Raddatz                                          *
-      *  Date    :  25.09.2002                                              *
-      *  E-mail  :  thomas.raddatz@tools400.de                              *
-      *  Homepage:  www.tools400.de                                         *
-      *=====================================================================*
-      *
-      /COPY QRTVFLDA,FDFLDA0100
-      /COPY QRTVFLDA,FDFLDA0200
-      /COPY QRTVFLDA,FDFLDA0300
-      /COPY QRTVFLDA,FDFLDA0310
-      /COPY QRTVFLDA,FDFLDA0320
-      /COPY QRTVFLDA,FDFLDA0330
-      /COPY QRTVFLDA,FDFLDA0340
-      /COPY QRTVFLDA,FDFLDA0350
-      *
-     D fldDct_handle_t...
-     D                 S               *   based(pDummy)
-      *
-      /COPY QBASICS1,PBASICS1
-      *
-      *===============================================================*
-      *  Open Field Attributes Dictionary
-      *===============================================================*
-      *
-     D f_FldDct_new...
-     D                 PR              N
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_new+
-     D                                     ')
-     D  i_fileName                   10A   const
-     D  i_fileLib                    10A   const
-     D  i_rcdFormat                  10A   const
-     D  o_handle                                 like(fldDct_handle_t)
-     D  o_msg                                    likeds(msg_t        )
-     D                                           options(*nopass)
-      *
-      *===============================================================*
-      *  Close Field Attributes Dictionary
-      *===============================================================*
-      *
-     D f_FldDct_delete...
-     D                 PR              N
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_delete+
-     D                                     ')
-     D  io_handle                                like(fldDct_handle_t)
-      *
-      *===============================================================*
-      *  Retrieve Field Attributes from Dictionary
-      *===============================================================*
-      *
-     D f_FldDct_rtvFldAtr...
-     D                 PR              N   opdesc
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_rtvFldAtr+
-     D                                     ')
-     D  i_handle                           const  like(fldDct_handle_t)
-     D  i_fldName                   258A   const  options(*varsize)
-     D  o_data                     2048A          options(*varsize)
-     D  i_format                      8A   const  options(*nopass)
-      *
-      *===============================================================*
-      *  Get Number of Entries available
-      *===============================================================*
-     D f_FldDct_getNumE...
-     D                 PR            10I 0
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_getNumE+
-     D                                     ')
-     D i_handle                            const  like(fldDct_handle_t)
-      *
-      *===============================================================*
-      *  Returns cTrue if a given handle is NULL, else cFalse.
-      *===============================================================*
-      *
-     D f_FldDct_isNull...
-     D                 PR              N
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_isNull+
-     D                                     ')
-     D  i_handle                           const like(fldDct_handle_t)
-      *
-      *===============================================================*
-      *  Returns a NULL handle.
-      *===============================================================*
-      *
-     D f_FldDct_null...
-     D                 PR                        like(fldDct_handle_t)
-     D                                     extproc('RTVFLDA+
-     D                                     _f_FldDct_null+
-     D                                     ')
-      *
-      *===============================================================*
-      *  Constants
-      *===============================================================*
-     D cFLDDCT_RCDFMT_FIRST...
-     D                 C                   const('*FIRST')
-      *
-     D cFLDDCT_TYPE_ERROR...
-     D                 C                   const('?')
-     D cFLDDCT_TYPE_BINARY...
-     D                 C                   const('B')
-     D cFLDDCT_TYPE_FLOAT...
-     D                 C                   const('F')
-     D cFLDDCT_TYPE_ZONED...
-     D                 C                   const('S')
-     D cFLDDCT_TYPE_PACKED...
-     D                 C                   const('P')
-     D cFLDDCT_TYPE_CHAR...
-     D                 C                   const('A')
-     D cFLDDCT_TYPE_GRAPHIC...
-     D                 C                   const('G')
-     D cFLDDCT_TYPE_DATE...
-     D                 C                   const('L')
-     D cFLDDCT_TYPE_TIME...
-     D                 C                   const('T')
-     D cFLDDCT_TYPE_TMSTMP...
-     D                 C                   const('Z')
-     D cFLDDCT_TYPE_LOB...
-     D                 C                   const('1')
-      *
-     D cFLDDCT_USE_ERROR...
-     D                 C                   const('?')
-     D cFLDDCT_USE_INPUT...
-     D                 C                   const('I')
-     D cFLDDCT_USE_OUTPUT...
-     D                 C                   const('O')
-     D cFLDDCT_USE_BOTH...
-     D                 C                   const('B')
-     D cFLDDCT_USE_NEITHER...
-     D                 C                   const('N')
-      *
-      *  Time stamp data formats ...
-      *  ... of physical files
-      *      (must be the same as defined for the CSV converter)
-     D cFLDDCT_DTFMT_SAA...
-     D                 C                   const('*SAA')
-      *
-      *  Time data formats ...
-      *  ... of physical files
-      *      (must be the same as defined for the CSV converter)
-     D cFLDDCT_DTFMT_HMS...
-     D                 C                   const('*HMS')
-      *
-      *  Date and time data formats ...
-      *  ... of physical files
-      *      (must be the same as defined for the CSV converter)
-     D cFLDDCT_DTFMT_ISO...
-     D                 C                   const('*ISO')
-     D cFLDDCT_DTFMT_USA...
-     D                 C                   const('*USA')
-     D cFLDDCT_DTFMT_EUR...
-     D                 C                   const('*EUR')
-     D cFLDDCT_DTFMT_JIS...
-     D                 C                   const('*JIS')
-      *
-      *  Data data formats ...
-      *  ... of physical files
-      *      (must be the same as defined for the CSV converter)
-     D cFLDDCT_DTFMT_ERROR...
-     D                 C                   const('?')
-     D cFLDDCT_DTFMT_JOB...
-     D                 C                   const('*JOB')
-     D cFLDDCT_DTFMT_QDT...
-     D                 C                   const('*QDT')
-     D cFLDDCT_DTFMT_MDY...
-     D                 C                   const('*MDY')
-     D cFLDDCT_DTFMT_DMY...
-     D                 C                   const('*DMY')
-     D cFLDDCT_DTFMT_YMD...
-     D                 C                   const('*YMD')
-     D cFLDDCT_DTFMT_JUL...
-     D                 C                   const('*JUL')
-      *  ... of logical files
-     D cFLDDCT_DTFMT_MDYY...
-     D                 C                   const('*MDYY')
-     D cFLDDCT_DTFMT_DMYY...
-     D                 C                   const('*DMYY')
-     D cFLDDCT_DTFMT_YYMD...
-     D                 C                   const('*YYMD')
-     D cFLDDCT_DTFMT_LONGJUL...
-     D                 C                   const('*LONGJUL')
-     D cFLDDCT_DTFMT_CMDY...
-     D                 C                   const('*CMDY')
-     D cFLDDCT_DTFMT_CDMY...
-     D                 C                   const('*CDMY')
-     D cFLDDCT_DTFMT_CYMD...
-     D                 C                   const('*CYMD')
-     D cFLDDCT_DTFMT_MY...
-     D                 C                   const('*MY')
-     D cFLDDCT_DTFMT_YM...
-     D                 C                   const('*YM')
-     D cFLDDCT_DTFMT_MYY...
-     D                 C                   const('*MYY')
-     D cFLDDCT_DTFMT_YYM...
-     D                 C                   const('*YYM')
-      *
-      *  Date separaters ...
-     D cFLDDCT_DTSEP_ERROR...
-     D                 C                   const('?')
-     D cFLDDCT_DTSEP_JOB...
-     D                 C                   const('*JOB')
-     D cFLDDCT_DTSEP_IMPL...
-     D                 C                   const('*IMPLIED')
-     D cFLDDCT_DTSEP_SLASH...
-     D                 C                   const('/')
-     D cFLDDCT_DTSEP_DASH...
-     D                 C                   const('-')
-     D cFLDDCT_DTSEP_PERIOD...
-     D                 C                   const('.')
-     D cFLDDCT_DTSEP_BLANK...
-     D                 C                   const(' ')
-     D cFLDDCT_DTSEP_COLON...
-     D                 C                   const(':')
-      *
-      *  Field name special values ...
-     D cFLDDCT_FLD_FIRST...
-     D                 C                   const('*FIRST')
-     D cFLDDCT_FLD_LAST...
-     D                 C                   const('*LAST')
-     D cFLDDCT_FLD_NEXT...
-     D                 C                   const('*NEXT')
-     D cFLDDCT_FLD_PREV...
-     D                 C                   const('*PREV')
-      *
+**free
+//=====================================================================*
+//  Author  :  Thomas Raddatz                                          *
+//  Date    :  25.09.2002                                              *
+//  E-mail  :  thomas.raddatz@tools400.de                              *
+//  Homepage:  www.tools400.de                                         *
+//=====================================================================*
+
+/copy QRTVFLDA,FDFLDA0100
+/copy QRTVFLDA,FDFLDA0200
+/copy QRTVFLDA,FDFLDA0300
+/copy QRTVFLDA,FDFLDA0310
+/copy QRTVFLDA,FDFLDA0320
+/copy QRTVFLDA,FDFLDA0330
+/copy QRTVFLDA,FDFLDA0340
+/copy QRTVFLDA,FDFLDA0350
+
+dcl-s fldDct_handle_t pointer based(pDummy);
+
+/copy QBASICS1,PBASICS1
+
+//===============================================================*
+//  Open Field Attributes Dictionary
+//===============================================================*
+
+dcl-pr f_FldDct_new ind extproc('RTVFLDA_f_FldDct_new');
+  i_fileName  char(10) const;
+  i_fileLib   char(10) const;
+  i_rcdFormat char(10) const;
+  o_handle    like(fldDct_handle_t);
+  o_msg       likeds(msg_t) options(*nopass);
+end-pr;
+
+//===============================================================*
+//  Close Field Attributes Dictionary
+//===============================================================*
+
+dcl-pr f_FldDct_delete ind extproc('RTVFLDA_f_FldDct_delete');
+  io_handle like(fldDct_handle_t);
+end-pr;
+
+//===============================================================*
+//  Retrieve Field Attributes from Dictionary
+//===============================================================*
+
+dcl-pr f_FldDct_rtvFldAtr ind opdesc extproc('RTVFLDA_f_FldDct_rtvFldAtr');
+  i_handle  like(fldDct_handle_t) const;
+  i_fldName char(258) options(*varsize) const;
+  o_data    char(2048) options(*varsize);
+  i_format  char(8) options(*nopass) const;
+end-pr;
+
+//===============================================================*
+//  Get Number of Entries available
+//===============================================================*
+dcl-pr f_FldDct_getNumE int(10) extproc('RTVFLDA_f_FldDct_getNumE');
+  i_handle like(fldDct_handle_t) const;
+end-pr;
+
+//===============================================================*
+//  Returns cTrue if a given handle is NULL, else cFalse.
+//===============================================================*
+
+dcl-pr f_FldDct_isNull ind extproc('RTVFLDA_f_FldDct_isNull');
+  i_handle like(fldDct_handle_t) const;
+end-pr;
+
+//===============================================================*
+//  Returns a NULL handle.
+//===============================================================*
+
+dcl-pr f_FldDct_null like(fldDct_handle_t) extproc('RTVFLDA_f_FldDct_null');
+end-pr;
+
+//===============================================================*
+//  Constants
+//===============================================================*
+dcl-c cFLDDCT_RCDFMT_FIRST '*FIRST';
+
+dcl-c cFLDDCT_TYPE_ERROR '?';
+dcl-c cFLDDCT_TYPE_BINARY 'B';
+dcl-c cFLDDCT_TYPE_FLOAT 'F';
+dcl-c cFLDDCT_TYPE_ZONED 'S';
+dcl-c cFLDDCT_TYPE_PACKED 'P';
+dcl-c cFLDDCT_TYPE_CHAR 'A';
+dcl-c cFLDDCT_TYPE_GRAPHIC 'G';
+dcl-c cFLDDCT_TYPE_DATE 'L';
+dcl-c cFLDDCT_TYPE_TIME 'T';
+dcl-c cFLDDCT_TYPE_TMSTMP 'Z';
+dcl-c cFLDDCT_TYPE_LOB '1';
+
+dcl-c cFLDDCT_USE_ERROR '?';
+dcl-c cFLDDCT_USE_INPUT 'I';
+dcl-c cFLDDCT_USE_OUTPUT 'O';
+dcl-c cFLDDCT_USE_BOTH 'B';
+dcl-c cFLDDCT_USE_NEITHER 'N';
+
+//  Time stamp data formats ...
+//  ... of physical files
+//      (must be the same as defined for the CSV converter)
+dcl-c cFLDDCT_DTFMT_SAA '*SAA';
+
+//  Time data formats ...
+//  ... of physical files
+//      (must be the same as defined for the CSV converter)
+dcl-c cFLDDCT_DTFMT_HMS '*HMS';
+
+//  Date and time data formats ...
+//  ... of physical files
+//      (must be the same as defined for the CSV converter)
+dcl-c cFLDDCT_DTFMT_ISO '*ISO';
+dcl-c cFLDDCT_DTFMT_USA '*USA';
+dcl-c cFLDDCT_DTFMT_EUR '*EUR';
+dcl-c cFLDDCT_DTFMT_JIS '*JIS';
+
+//  Data data formats ...
+//  ... of physical files
+//      (must be the same as defined for the CSV converter)
+dcl-c cFLDDCT_DTFMT_ERROR '?';
+dcl-c cFLDDCT_DTFMT_JOB '*JOB';
+dcl-c cFLDDCT_DTFMT_QDT '*QDT';
+dcl-c cFLDDCT_DTFMT_MDY '*MDY';
+dcl-c cFLDDCT_DTFMT_DMY '*DMY';
+dcl-c cFLDDCT_DTFMT_YMD '*YMD';
+dcl-c cFLDDCT_DTFMT_JUL '*JUL';
+//  ... of logical files
+dcl-c cFLDDCT_DTFMT_MDYY '*MDYY';
+dcl-c cFLDDCT_DTFMT_DMYY '*DMYY';
+dcl-c cFLDDCT_DTFMT_YYMD '*YYMD';
+dcl-c cFLDDCT_DTFMT_LONGJUL '*LONGJUL';
+dcl-c cFLDDCT_DTFMT_CMDY '*CMDY';
+dcl-c cFLDDCT_DTFMT_CDMY '*CDMY';
+dcl-c cFLDDCT_DTFMT_CYMD '*CYMD';
+dcl-c cFLDDCT_DTFMT_MY '*MY';
+dcl-c cFLDDCT_DTFMT_YM '*YM';
+dcl-c cFLDDCT_DTFMT_MYY '*MYY';
+dcl-c cFLDDCT_DTFMT_YYM '*YYM';
+
+//  Date separaters ...
+dcl-c cFLDDCT_DTSEP_ERROR '?';
+dcl-c cFLDDCT_DTSEP_JOB '*JOB';
+dcl-c cFLDDCT_DTSEP_IMPL '*IMPLIED';
+dcl-c cFLDDCT_DTSEP_SLASH '/';
+dcl-c cFLDDCT_DTSEP_DASH '-';
+dcl-c cFLDDCT_DTSEP_PERIOD '.';
+dcl-c cFLDDCT_DTSEP_BLANK ' ';
+dcl-c cFLDDCT_DTSEP_COLON ':';
+
+//  Field name special values ...
+dcl-c cFLDDCT_FLD_FIRST '*FIRST';
+dcl-c cFLDDCT_FLD_LAST '*LAST';
+dcl-c cFLDDCT_FLD_NEXT '*NEXT';
+dcl-c cFLDDCT_FLD_PREV '*PREV';
+
