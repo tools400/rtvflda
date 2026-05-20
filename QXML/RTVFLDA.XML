@@ -1406,7 +1406,7 @@ srccssid=  "01141">
                           SRCFILE(&SRCLIB/&SRCFILE) +
                           SRCMBR(RTVFLDA) +
                           ACTGRP(*CALLER) +
-                          BNDSRVPGM(&TOLIB/BASICS1) +
+                          BNDSRVPGM(*LIBL/BASICS1) +
                           DETAIL(*BASIC) +
                           TEXT('Retrieve Field Attributes API') +
                           TGTRLS(&TGTRLS)
