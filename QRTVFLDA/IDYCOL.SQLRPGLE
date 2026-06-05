@@ -203,7 +203,7 @@ dcl-proc isSQLError;
 end-proc;
 
 // ------------------------------------------------------------
-//  Returns *ON, when the specified object exists, ese *OFF.
+//  Returns *ON, when the specified object exists, else *OFF.
 // ------------------------------------------------------------
 dcl-proc exist;
   dcl-pi *n ind extproc(*dclcase);

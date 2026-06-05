@@ -53,7 +53,7 @@
 //=====================================================================*
 //  History:                                                           *
 //                                                                     *
-//  Datum       Name          nderung                                 *
+//  Datum       Name          Änderung                                 *
 //  ----------  ------------  ---------------------------------------  *
 //  17.02.2006  Th.Raddatz    Fixed problem that a wrong TEXT was      *
 //                            returned, when there is not field text.  *
@@ -888,7 +888,7 @@ dcl-proc f_FldDct_getNumE export;
   // Einblenden Handle
   pHandle = i_handle;
 
-  // Ermglichen Zugriff auf "Format Definition Header"
+  // Ermöglichen Zugriff auf "Format Definition Header"
   pQdb_Qddfmt = handle.hFild0200;
 
   // Ermitteln Anzahl Felder
